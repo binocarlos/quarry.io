@@ -29,3 +29,5 @@ container3.attr('city', 'bristol')
 
 console.dir(container3.attr());
 
+container2.append(container3);
+
