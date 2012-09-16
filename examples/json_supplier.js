@@ -8,6 +8,13 @@ var supply_chain = io.json_file({
 	// make a new warehouse so we can run selectors against the data source
 io.warehouse(supply_chain).ready(function(warehouse){
 
+
+	warehouse('> [name^=S] city.big').each(function(result){
+		console.log('' + result);
+	})
+
+	
+	/*
 	var product = warehouse.create()
 		.tagname('product')
 		.attr({
@@ -21,8 +28,9 @@ io.warehouse(supply_chain).ready(function(warehouse){
 				text:'Hello World'
 			}));
 
-
+	
 	warehouse.append(product);
+	*/
 	
 	//console.dir(product.raw());
 

@@ -138,5 +138,26 @@
         "_meta": {
             "quarryid": "9a8cda88-17cc-49e7-a178-9cd6c45bad91"
         }
+    },
+    {
+        "_meta": {
+            "quarryid": "c8309512-c7c3-4826-97a8-c6188926edcc",
+            "tagname": "product",
+            "classnames": {
+                "onsale": true
+            }
+        },
+        "_children": [
+            {
+                "_meta": {
+                    "quarryid": "460b5c6d-6a5a-46d2-9919-c145565c643a",
+                    "tagname": "caption"
+                },
+                "_children": [],
+                "text": "Hello World"
+            }
+        ],
+        "price": 100,
+        "color": "red"
     }
 ]
