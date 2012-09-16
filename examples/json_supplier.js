@@ -1,78 +1,55 @@
 var io = require('../lib/quarryio');
 
-// make a new warehouse so we can run selectors against the data source
-io.warehouse()
-.supply(io.json_file({	
+/*
+io.json_file({	
 	file:__dirname + '/country.json'			
-}))
-.ready(function(warehouse){
+}).warehouse(function(db){
+*/
 
-	console.log('warehouse ready');
-	/*
-	var container2 = warehouse.factory('product', {
-		name:'test'
-	})
-	.addClass('onsale');
+	// make a new warehouse so we can run selectors against the data source
+io.warehouse(function(message, next){
 
-	warehouse('product[price<100]').each(function(product){
+	console.log('HAVE THE MESSAGE');
+	console.dir(message.contract.selector[0]);
 
-		// load over the network
-		product.ship('caption[name$=t]').each(function(caption){
+}).ready(function(warehouse){
 
+	var product = warehouse.create()
+		.tagname('product')
+		.attr({
+			price:100,
+			color:'red'
 		})
+		.addClass('onsale');
 
-		// traverse the local data
-		product.find('caption[name$=t]').each(function(caption){
+		console.dir(product.raw());
 
-		})
-	})
-
-	// load over the network and get top level results container
-	warehouse('product[price<100]').when(function(products){
-
-	})
-	*/
-
-})
-
-
+	//$quarry('product[price<100]');
 
 /*
-var container = factory([1,5,7,6,8]);
+	.each(function(result){
 
-container.filter(function(child){
+		result
+		.attr('price', 120)
+		.append('caption', {
+			text:'hello'
+		})
+		.save(function(){
+			console.log('cool');
 
-	return child.attr()<=5;
-	
-}).each(function(child){
-	console.log('found');
-	console.log(child.attr());
-})
+			result.find('caption').each(function(caption){
 
-var container2 = factory({
-	name:'test',
-	_meta:{
-		tagname:'product',
-		classnames:{
-			onsale:true
-		}
-	}
-})
+			})
 
-var container3 = factory({
-	name:'child'
-})
+			$quarry('caption', result).each(function(caption){
 
-container3.attr('city', 'bristol')
+			})
+		})
 
-console.dir(container3.attr());
+		
 
-container2.append(container3);
-
-$quarry('product.cheap > img', '.quarry').ship(function(container){
-
-	$container('product')
-})
-
-
+	})
 */
+})
+
+
