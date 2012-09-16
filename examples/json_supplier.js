@@ -1,18 +1,12 @@
 var io = require('../lib/quarryio');
 
-/*
-io.json_file({	
-	file:__dirname + '/country.json'			
-}).warehouse(function(db){
-*/
+var supply_chain = io.json_file({	
+	file:__dirname + '/country.json',
+	pretty:true			
+});
 
 	// make a new warehouse so we can run selectors against the data source
-io.warehouse(function(message, next){
-
-	console.log('HAVE THE MESSAGE');
-	console.dir(message.contract.selector[0]);
-
-}).ready(function(warehouse){
+io.warehouse(supply_chain).ready(function(warehouse){
 
 	var product = warehouse.create()
 		.tagname('product')
@@ -20,9 +14,17 @@ io.warehouse(function(message, next){
 			price:100,
 			color:'red'
 		})
-		.addClass('onsale');
+		.addClass('onsale')
+		.append(warehouse.create()
+			.tagname('caption')
+			.attr({
+				text:'Hello World'
+			}));
 
-		console.dir(product.raw());
+
+	warehouse.append(product);
+	
+	//console.dir(product.raw());
 
 	//$quarry('product[price<100]');
 
