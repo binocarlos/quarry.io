@@ -1,35 +1,33 @@
 var io = require('../lib/quarryio');
 
+// this is a double stack supply chain
 var supply_chain = io.json_file({	
 	file:__dirname + '/country.json',
 	pretty:true			
-});
+})
 
 	// make a new warehouse so we can run selectors against the data source
 io.warehouse(supply_chain).ready(function(warehouse){
 
-
-	warehouse('> [name^=S] city.big').each(function(result){
+	warehouse('city').each(function(result){
 		console.log('' + result);
 	})
 
-	
-	/*
-	var product = warehouse.create()
-		.tagname('product')
-		.attr({
-			price:100,
-			color:'red'
-		})
-		.addClass('onsale')
-		.append(warehouse.create()
-			.tagname('caption')
-			.attr({
-				text:'Hello World'
-			}));
+	warehouse('area').when(function(result){
+		console.log(result.count());
+	})
 
+
+	/*
+	var supplier = warehouse.create()
+		.tagname('supplier')
+		.attr({
+			file:__dirname + '/fruit.json',
+			pretty:true	
+		})
+		.addClass('food');
 	
-	warehouse.append(product);
+	warehouse.append(supplier);
 	*/
 	
 	//console.dir(product.raw());
