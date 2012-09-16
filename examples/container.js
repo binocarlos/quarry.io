@@ -31,3 +31,9 @@ console.dir(container3.attr());
 
 container2.append(container3);
 
+$quarry('product.cheap > img', '.quarry').ship(function(container){
+
+	$container('product')
+})
+
+

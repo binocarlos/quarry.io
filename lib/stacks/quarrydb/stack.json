@@ -1,9 +1,0 @@
-{
-	"name":"QuarryDB",
-	"services":[{
-		"name":"selector",
-		"description":"process CSS selectors into JSON",
-		"pattern":"rpc",
-		"code":"selector/index.js"
-	}]
-}
