@@ -1,29 +1,33 @@
 var io = require('../lib/quarryio');
 
-// new warehouse pointing to a JSON file
-io.warehouse(io.json_file({	
+// get the root supplier ready
+io.json_file({
 	file:__dirname + '/country.json',
 	pretty:true
-}))
-// 
-.use('context', function(container, next){
+}, function(root_supply_chain){
 
-	console.log('-------------------------------------------');
-	console.log('context MIDDLEWARE');
+	// now make our custom warehouse
 
-	console.dir(container);
+	// new warehouse pointing to a JSON file
+	io.warehouse(function(message, callback){
 
-	next();
+	// capture full context searches
+
+
+	})
+	.ready(function(warehouse){
+
+		/*
+		warehouse('city.cool').each(function(result){
+			console.log('' + result);
+		})
+		*/
+
+		warehouse('fruit', '.food').when(function(result){
+			console.log(result.count());
+		})
+
 })
-.ready(function(warehouse){
-
-	warehouse('city.food').each(function(result){
-		console.log('' + result);
-	})
-
-	warehouse('area', 'city[name^=b]').when(function(result){
-		console.log(result.count());
-	})
 
 
 	/*
@@ -66,6 +70,3 @@ io.warehouse(io.json_file({
 
 	})
 */
-})
-
-
