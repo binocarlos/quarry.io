@@ -1,4 +1,4 @@
-var io = require('../lib/quarryio');
+var io = require('../../lib/quarryio');
 var async = require('async');
 
 var supply_chain_factory = function(container){
