@@ -1,21 +1,56 @@
 var io = require('../lib/quarryio');
 
-// get the root supplier ready
-io.json_file({
-	file:__dirname + '/country.json',
-	pretty:true
-}, function(root_supply_chain){
+var root_supplier = null;
 
-	// now make our custom warehouse
+function ensureRootSupplier(ready_callback){
 
-	// new warehouse pointing to a JSON file
-	io.warehouse(function(message, callback){
+	if(root_supplier){
+		ready_callback && ready_callback(root_supplier);
+		return;
+	}
 
-	// capture full context searches
+	root_supplier = io.json_file({
+		file:__dirname + '/country.json',
+		pretty:true
+	}, ready_callback);
+}
 
+// new warehouse pointing to a JSON file
+io.warehouse(function(message, callback){
 
+	// get the root supply chain
+	ensureRootSupplier(function(root_supply_chain){
+
+		root_supply_chain(message, callback);
+
+		/*
+		console.log('have root');
+		console.dir(message);
+
+		if(message.action=='contract'){
+			root_supply_chain(message, function(error, res){
+				console.log('-------------------------------------------');
+				console.log('here');
+				console.dir(res);
+			});
+		}
+		// this is destined for another supply_chain
+		else if(message.pointer){
+
+		}
+		// a default one - pipe normally
+		else{
+			root_supply_chain(message, function(){
+				console.log('-------------------------------------------');
+				console.log('here');
+			});
+		}
+
+		*/
 	})
-	.ready(function(warehouse){
+	
+})
+.ready(function(warehouse){
 
 		/*
 		warehouse('city.cool').each(function(result){
@@ -23,7 +58,8 @@ io.json_file({
 		})
 		*/
 
-		warehouse('fruit', '.food').when(function(result){
+		warehouse('area', '.cool').when(function(result){
+			console.log('-------------------------------------------');
 			console.log(result.count());
 		})
 
