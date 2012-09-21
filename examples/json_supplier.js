@@ -1,44 +1,87 @@
 var io = require('../lib/quarryio');
 var async = require('async');
+var eyes = require('eyes');
 
-var supply_chain_factory = function(container){
+var default_pointer = {
+	type:'json_file',
+	file:__dirname + '/country.json',
+	pretty:true
+}
+// the factory function for the warehouse
+var factory = function(pointer){
 
-	var type = container.attr('supply_chain');
+	pointer || (pointer = default_pointer);
 
-	if(!type || !io[type]){
+	if(!pointer.type || !io[pointer.type]){
 		return null;
 	}
 	
-	return io[type](container.attr());
+	return io[pointer.type](pointer);
 }
 
 // first the supply chain
-var warehouse = io.warehouse(io.json_file({
+var supply_chain = io.warehouse(io.json_file({
 	file:__dirname + '/country.json',
 	pretty:true
-})).branch(function(container){
+})).branch('supplier', function(container){
 
-	if(container.match('supplier')){
-		console.log('-------------------------------------------');
-		console.log('AT BRANCH FUNCTION');
-		console.log(container.toString());
-		console.dir(container.raw());
-		return supply_chain_factory(container);
-	}
-	else{
-		return false;	
-	}
+	return supply_chain_factory(container);
 	
 })
 
-io.boot(warehouse).ready(function(quarry){
+io.warehouse(io.json_file({
+	file:__dirname + '/country.json',
+	pretty:true
+}))
+.use(function(req, next){
+	// filter the previous to see if we want to branch the supply chain
+	if(req.action=='select'){
+		_.each(req.message.previous, function(raw){
+			var test_container = io.container(raw);
+		})
+	}
+})
+.ready(function(warehouse){
 
-	quarry('fruit,area', '.food').each(function(result){
+	warehouse('supplier.testjson').first(function(quarry){
 		console.log('-------------------------------------------');
-		console.log(result.toString());
+		console.log(quarry.toString());	
+		warehouse('area, fruit[name$=s]', '.json, .food').when(function(result){
+
+			result.pourInto(quarry);
+			
+		})
+		
 	})
 
 })
+
+
+/*
+	// first get the quarrydb supplier
+	root('.quarrydb').first(function(db){
+
+		console.log('have quarrydb');
+		console.log(db.toString());
+
+		root('city').when(function(cities){
+
+			console.log('-------------------------------------------');
+			console.log('POURING');
+			cities.pourInto(db);
+		})
+		
+		//eyes.inspect(db.raw())
+		//console.log(db.toString());
+	})
+*/
+/*
+	quarry('product#hello.red[price<100] > img, area', '.food').each(function(result){
+		console.log('-------------------------------------------');
+		console.log(result.toString());
+	})
+*/
+
 
 
 

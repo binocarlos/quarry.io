@@ -28,6 +28,19 @@ installlog "Making Temp Folder /root/.sources"
 mkdir -p $sources_folder
 
 ##########################################################################################
+# Pre Apt Setup - things to get done before apt-get kicks in
+
+# Mongo apt-get keys
+apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list
+
+# this is how to run the above normally using sudo
+#echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/10gen.list
+
+# Update repos
+apt-get update
+
+##########################################################################################
 # This makes sure we have 'basic' packages like a build tool for a start
 installlog "Installing Basic Apt Packages"
 apt-get install python-software-properties curl -y
@@ -35,8 +48,13 @@ apt-get install build-essential -y
 
 ##########################################################################################
 # Installing Redis via Apt
-installlog "Installing Redis 2:1.2.6-1"
+installlog "Installing Most Recent Stable Redis"
 apt-get -y install redis-server
+
+##########################################################################################
+# Installing Mongo via Apt
+installlog "Installing Most Recent Stable Mongo"
+apt-get install mongodb-10gen
 
 ##########################################################################################
 # Download and make, install ZeroMQ
