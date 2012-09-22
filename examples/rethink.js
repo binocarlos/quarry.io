@@ -22,7 +22,26 @@ io.boot(io.warehouse(function(route, callback){
 
 })).ready(function(warehouse){
 
-	warehouse('area[population<15]', '*').ship(function(results){
-		eyes.inspect(results);
+	warehouse('area[population<15],fruit', '.food').when(function(results){
+
+		var batch = io.batch();
+
+		results.each(function(result){
+			if(result.match('fruit')){
+
+				console.log('adding batch');
+				result.attr('price', 250);
+				batch.add(function(next){
+					result.save(next);
+				})
+				
+			}	
+		})
+
+		
+		batch.run(function(){
+			console.log('SAVING HAS FINISHED!!!');
+		})
+
 	})
 })

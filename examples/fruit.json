@@ -4,18 +4,20 @@
         "_meta": {
             "tagname": "fruit",
             "classnames": {},
-            "quarryid": "56544da5-34a4-4b28-b0b5-4a9410101954"
+            "quarryid": "96ccbb3d-94c4-42a6-a67f-e6f9d2f67543"
         },
-        "_children": []
+        "_children": [],
+        "price": 250
     },
     {
         "name": "Peaches",
         "_meta": {
             "tagname": "fruit",
             "classnames": {},
-            "quarryid": "18421da3-a87d-41c2-b55c-61278584a713"
+            "quarryid": "03303595-7b33-420e-8644-174c380f8869"
         },
-        "_children": []
+        "_children": [],
+        "price": 250
     },
     {
         "name": "Lemon",
@@ -24,9 +26,10 @@
             "classnames": {
                 "citrus": true
             },
-            "quarryid": "4287a0fc-bc02-47e7-aa2a-1b6972e563f7"
+            "quarryid": "422b1065-85ba-449a-9541-6cc5c8f898df"
         },
-        "_children": []
+        "_children": [],
+        "price": 250
     },
     {
         "name": "Lime",
@@ -35,8 +38,9 @@
             "classnames": {
                 "citrus": true
             },
-            "quarryid": "3ef3ed14-b409-41ed-b679-a4c6b9aa3060"
+            "quarryid": "73702363-c0ec-41c5-90ed-47d1cb124092"
         },
-        "_children": []
+        "_children": [],
+        "price": 250
     }
 ]
