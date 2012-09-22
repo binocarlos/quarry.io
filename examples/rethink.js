@@ -22,7 +22,7 @@ io.boot(io.warehouse(function(route, callback){
 
 })).ready(function(warehouse){
 
-	warehouse('area', 'city').ship(function(results){
+	warehouse('area[population<15]', '*').ship(function(results){
 		eyes.inspect(results);
 	})
 })
