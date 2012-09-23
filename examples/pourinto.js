@@ -22,22 +22,19 @@ io.boot(io.warehouse(function(route, callback){
 
 })).ready(function(warehouse){
 
-	warehouse('product > caption, .quarrydb').when(function(results){
+	warehouse('city > area, .quarrydb').when(function(results){
+
+		results.each(function(result){
+			console.log(result.toString());
+		})
 
 		var db = results.find('.quarrydb').first();
-		console.log(result.toString());
+		var areas = results.find('area');
 
-		result.attr({
-			price:350,
-			location:'London'
+		areas.pourInto(db, function(){
+			console.log('-------------------------------------------');
+			console.log('DONE!');
 		})
-
-		console.dir(result.attr('price'));
-
-		result.save(function(){
-			console.log('saved');
-		})
-		
 
 	})
 
