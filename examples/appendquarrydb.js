@@ -22,30 +22,24 @@ io.boot(io.warehouse(function(route, callback){
 
 })).ready(function(warehouse){
 
-	
+	var test = io.new('product', {
+		price:200,
+		tagline:'A real cheap eat'
+	})
+	.addClass('onsale')
+	.append(io.new('caption', {
+		text:'hello world'
+	}))
 
-	/*
-	warehouse('area[population<15],fruit', '.food').when(function(results){
+	warehouse('.quarrydb').each(function(quarrydb){
 
-		var batch = io.batch();
-
-		results.each(function(result){
-			if(result.match('fruit')){
-
-				console.log('adding batch');
-				result.attr('price', 250);
-				batch.add(function(next){
-					result.save(next);
-				})
-				
-			}	
+		console.dir(quarrydb.toString());
+		quarrydb.append(test, function(){
+			console.log('-------------------------------------------');
+			console.log('done');
 		})
-
 		
-		batch.run(function(){
-			console.log('SAVING HAS FINISHED!!!');
-		})
 
 	})
-	*/
+
 })

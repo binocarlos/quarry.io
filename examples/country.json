@@ -20,7 +20,32 @@
                             "tagname": "area",
                             "quarryid": "bb3a4268-a1fe-430d-98d3-f4149347e9a1"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     },
                     {
                         "name": "Redland",
@@ -29,7 +54,32 @@
                             "tagname": "area",
                             "quarryid": "9da7d030-f323-4d04-a4fb-00c955af7113"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     }
                 ]
             },
@@ -51,7 +101,32 @@
                             "tagname": "area",
                             "quarryid": "128c4b96-e9dd-4070-9191-ba7221a72efc"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     },
                     {
                         "name": "Westminster",
@@ -60,7 +135,32 @@
                             "tagname": "area",
                             "quarryid": "2e942390-e50c-4641-9bbd-de2891dcf89e"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     }
                 ]
             }
@@ -91,7 +191,32 @@
                             "tagname": "area",
                             "quarryid": "0ea93970-2be7-4a5e-bc62-9a6852a28aff"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     },
                     {
                         "name": "Toxteth",
@@ -100,7 +225,32 @@
                             "tagname": "area",
                             "quarryid": "1fe4959e-7f55-483c-8100-0c1b29c062ef"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     }
                 ]
             },
@@ -122,7 +272,32 @@
                             "tagname": "area",
                             "quarryid": "6bb15bb1-75f5-4947-9ceb-f8f76333726b"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     },
                     {
                         "name": "Teesside",
@@ -131,7 +306,32 @@
                             "tagname": "area",
                             "quarryid": "22ebfd60-627d-4f8c-9e33-26b68d0e2c9f"
                         },
-                        "_children": []
+                        "_children": [
+                            {
+                                "price": 100,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            },
+                            {
+                                "price": 200,
+                                "tagline": "A real cheap eat",
+                                "_meta": {
+                                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                                    "tagname": "product",
+                                    "classnames": {
+                                        "onsale": true
+                                    }
+                                },
+                                "_children": []
+                            }
+                        ]
                     }
                 ]
             }
@@ -139,27 +339,6 @@
         "_meta": {
             "quarryid": "9a8cda88-17cc-49e7-a178-9cd6c45bad91"
         }
-    },
-    {
-        "_meta": {
-            "quarryid": "c8309512-c7c3-4826-97a8-c6188926edcc",
-            "tagname": "product",
-            "classnames": {
-                "onsale": true
-            }
-        },
-        "_children": [
-            {
-                "_meta": {
-                    "quarryid": "460b5c6d-6a5a-46d2-9919-c145565c643a",
-                    "tagname": "caption"
-                },
-                "_children": [],
-                "text": "Hello World"
-            }
-        ],
-        "price": 100,
-        "color": "red"
     },
     {
         "_meta": {
@@ -184,7 +363,8 @@
                 "collection": "apples"
             },
             "classnames": {
-                "food": true
+                "food": true,
+                "quarrydb": true
             },
             "quarryid": "0f42be01-70ea-45bf-9580-3c14aafb5a11"
         },

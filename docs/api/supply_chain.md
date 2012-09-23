@@ -108,8 +108,7 @@ Add container data onto an existing container.
 	{
     action:'append',
     message:{
-      parent:'343434',
-      pointer:'some other supply chain id',
+      target:skeleton,
       append:[
       	// an array or object of raw container data
       ]

@@ -28,7 +28,32 @@
             },
             "quarryid": "422b1065-85ba-449a-9541-6cc5c8f898df"
         },
-        "_children": [],
+        "_children": [
+            {
+                "price": 100,
+                "tagline": "A real cheap eat",
+                "_meta": {
+                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                    "tagname": "product",
+                    "classnames": {
+                        "onsale": true
+                    }
+                },
+                "_children": []
+            },
+            {
+                "price": 200,
+                "tagline": "A real cheap eat",
+                "_meta": {
+                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                    "tagname": "product",
+                    "classnames": {
+                        "onsale": true
+                    }
+                },
+                "_children": []
+            }
+        ],
         "price": 250
     },
     {
@@ -40,7 +65,32 @@
             },
             "quarryid": "73702363-c0ec-41c5-90ed-47d1cb124092"
         },
-        "_children": [],
+        "_children": [
+            {
+                "price": 100,
+                "tagline": "A real cheap eat",
+                "_meta": {
+                    "quarryid": "014f237c-ecc1-4791-8ae4-6533955c01b5",
+                    "tagname": "product",
+                    "classnames": {
+                        "onsale": true
+                    }
+                },
+                "_children": []
+            },
+            {
+                "price": 200,
+                "tagline": "A real cheap eat",
+                "_meta": {
+                    "quarryid": "11f4350e-a615-4987-b211-8e75c727fd3b",
+                    "tagname": "product",
+                    "classnames": {
+                        "onsale": true
+                    }
+                },
+                "_children": []
+            }
+        ],
         "price": 250
     }
 ]

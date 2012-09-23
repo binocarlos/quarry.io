@@ -43,8 +43,8 @@ apt-get update
 ##########################################################################################
 # This makes sure we have 'basic' packages like a build tool for a start
 installlog "Installing Basic Apt Packages"
-apt-get install python-software-properties curl -y
-apt-get install build-essential -y
+apt-get install build-essential git python-software-properties curl -y
+
 
 ##########################################################################################
 # Installing Redis via Apt
@@ -55,6 +55,11 @@ apt-get -y install redis-server
 # Installing Mongo via Apt
 installlog "Installing Most Recent Stable Mongo"
 apt-get install mongodb-10gen
+
+##########################################################################################
+# Installing GMP via Apy
+installlog "Installing Most Recent Stable GMP"
+apt-get install libgmp3-dev
 
 ##########################################################################################
 # Download and make, install ZeroMQ
