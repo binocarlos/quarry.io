@@ -1,11 +1,8 @@
 {
   "name": "quarry.io",
   "version": "0.0.1",
-  "description": "Quarry stack",
-  "main": "./bin",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "quarry.io database system",
+  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/binocarlos/quarry.io.git"
