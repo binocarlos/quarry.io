@@ -16,7 +16,10 @@ installlog()
   echo ""
 }
 
-# where are we running from
+##########################################################################################
+# work out where we are running from
+
+# where the code lives
 quarryio_home="/srv/quarryio"
 
 # where to download source for compiling
