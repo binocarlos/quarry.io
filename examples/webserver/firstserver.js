@@ -58,9 +58,18 @@ io.webserver({
   var http = stack.http;
   var sockets = stack.sockets;
 
-  // the stack is ready for a warehouse
-  // this will get all messages coming down the socket
-  // it needs to route those messages to the correct supply chains
+  /*
+    We can now do anything an express application can do
+   */
+  app.get('/', function(req, res){
+    res.send(JSON.stringify(req.user, null, 4));
+  })
+
+  /*
+    the stack is ready for a warehouse
+    this will get all messages coming down the socket
+    it needs to route those messages to the correct supply chains
+   */
   stack
     // pass the warehouse
     .use(warehouse)
