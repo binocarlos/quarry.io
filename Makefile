@@ -14,5 +14,6 @@ test:
 
 install:
 	npm install
+	#browserify container.browser.js -o container.browser.built.js
 
 .PHONY: test
