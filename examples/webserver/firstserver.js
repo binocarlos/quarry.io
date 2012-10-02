@@ -6,11 +6,62 @@ var express = require('express');
 
 config.document_root = __dirname + '/www';
 
-var warehouse = function(packet, callback){
-
-  console.log('message');
-  eyes.inspect(packet);
+/*
+  Routes to system resources
+ */
+var special_routes = {
+  'quarry.blueprints':{
+    driver:'json_file',
+    pretty:true,
+    file:__dirname + '/blueprints.json'
+  }
 }
+
+/*
+  Resource router - chooses where to route packets based on the route
+  given
+ */
+var warehouse = io.warehouse(function(route, packet, callback){
+
+  // we must have a login for them to get access to a warehouse
+  if(!packet.user){
+    // send back an empty supply chain
+    callback('no user present');
+    return;
+  }
+
+  // this is the special router so we can ask the system about stuff
+  // this can NEVER be written to here ('because it's only for select messages)
+  if(special_routes[route]){
+
+    console.log('GETTING SPECIAL ROUTE!!!');
+    route = special_routes[route];
+
+  }
+  else{
+
+    // load the project from the session - this will tell us the route
+    var user = packet.user;
+
+    var current_project = user.projects[user.current_project_index];
+
+    var default_route = current_project ? current_project.route : null;
+
+    // the project should tell us a route but this is the uber-default
+    if(!default_route){
+      default_route = {
+        driver:'quarrydb',
+        collection:'root_' + packet.user.id
+      }
+    }
+
+    route = route ? (route!='root' ? route : default_route) : default_route;
+  }
+    
+  var driver = route.driver;
+
+  io[driver] && io[driver](route, callback);  
+})
 
 /*
   the users database
@@ -20,6 +71,14 @@ var warehouse = function(packet, callback){
 var userdb = io.supplier(io.quarrydb({
   collection:'testusers'
 }))
+
+/*
+  The config for the web server
+ */
+var server_settings = {
+  hostname:'dev2.jquarry.com',
+  document_root:__dirname + '/www'
+}
 
 /*
   The API keys of the providers we want to allow a login for
@@ -39,40 +98,32 @@ var auth_settings = {
   Make a new express server
   You give a document root - it looks after delivering socket.io
  */
-io.webserver({
-  hostname:'dev2.jquarry.com',
-  document_root:__dirname + '/www'
-})
+var server = io.webserver(server_settings);
+
 /*
   Before we build the express server we want to give it some authentication settings
   We provide it with a Quarry DB as it's user database
   The user database can be any supply chain that saves    
 */
-.auth(auth_settings, userdb)
+server.auth(auth_settings, userdb);
+
 /*
   Now we build the server - it produces a stack which has express, socketio and the raw http server
   we can now add our main data warehouse via 'use'
   then we can 'listen' and we are up!
 */
-.build(function(stack){
+server.build(function(stack){
+  
   var app = stack.app;
   var http = stack.http;
   var sockets = stack.sockets;
 
-  app.get('/quarry.io/static2/*', express.static(__dirname+'/../../lib/clients/express/static'));
-
-  app.get('/quarry.io/static2/libs/bootstrap', function(req, res){
-    res.send('ok')
-  })
   /*
     We can now do anything an express application can do
    */
   app.get('/', function(req, res){
-    res.send(JSON.stringify(req.user, null, 4));
+    res.send('user = ' + JSON.stringify(req.user, null, 4));
   })
-
-  app.use("/styles2", express.static(__dirname + '/styles'));
-
   
   app.get('/digger', stack.application({
     name:'digger',
