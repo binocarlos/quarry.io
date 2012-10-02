@@ -2,6 +2,7 @@ var io = require('../../lib/quarryio');
 var async = require('async');
 var eyes = require('eyes');
 var config = require('./config.json');
+var express = require('express');
 
 config.document_root = __dirname + '/www';
 
@@ -54,16 +55,31 @@ io.webserver({
   then we can 'listen' and we are up!
 */
 .build(function(stack){
-  var app = stack.express;
+  var app = stack.app;
   var http = stack.http;
   var sockets = stack.sockets;
 
+  app.get('/quarry.io/static2/*', express.static(__dirname+'/../../lib/clients/express/static'));
+
+  app.get('/quarry.io/static2/libs/bootstrap', function(req, res){
+    res.send('ok')
+  })
   /*
     We can now do anything an express application can do
    */
   app.get('/', function(req, res){
     res.send(JSON.stringify(req.user, null, 4));
   })
+
+  app.use("/styles2", express.static(__dirname + '/styles'));
+
+  
+  app.get('/digger', stack.application({
+    name:'digger',
+    route:'/digger',
+    title:'Digger',
+
+  }))
 
   /*
     the stack is ready for a warehouse
@@ -72,7 +88,7 @@ io.webserver({
    */
   stack
     // pass the warehouse
-    .use(warehouse)
+    .warehouse(warehouse)
     // finally trigger a listen and we are live
     .listen(function(){
       console.log('all listening');

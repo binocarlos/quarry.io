@@ -25,7 +25,8 @@
     "passport-twitter": "~0.1.4",
     "ejs-locals": "~0.2.5",
     "connect-redis": "~1.4.4",
-    "cookie": "0.0.4"
+    "cookie": "0.0.4",
+    "cabinet": "~0.1.3"
   },
   "author": "Kai Davenport",
   "license": "GNU"
