@@ -11,7 +11,10 @@
             }
         },
         "fields": [
-            "name"
+            {
+                "field": "name",
+                "required": true
+            }
         ],
         "_children": []
     },
@@ -56,7 +59,9 @@
                     "name",
                     {
                         "field": "price",
-                        "type": "money"
+                        "rules": [
+                            "money"
+                        ]
                     },
                     {
                         "field": "image",
