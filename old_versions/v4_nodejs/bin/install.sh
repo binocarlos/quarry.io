@@ -56,22 +56,22 @@ apt-get -y install redis-server
 ##########################################################################################
 # Installing Mongo via Apt (document database)
 installlog "Installing Most Recent Stable Mongo"
-apt-get install mongodb-10gen -y
+apt-get install mongodb-10gen
 
 ##########################################################################################
 # Installing GMP via Apt (big number using strings library)
 installlog "Installing Most Recent Stable GMP"
-apt-get install libgmp3-dev -y
+apt-get install libgmp3-dev
 
 ##########################################################################################
 # Installing ImageMagick via Apt (image filters)
 installlog "Installing Most Recent Stable ImageMagick"
-apt-get install imagemagick -y
+apt-get install imagemagick
 
 ##########################################################################################
 # Installing netpbm via Apt (line by line image converter)
 installlog "Installing Most Recent Stable netpbm"
-apt-get install netpbm -y
+apt-get install netpbm
 
 ##########################################################################################
 # Download and make, install ZeroMQ (networking stack)

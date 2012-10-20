@@ -13,7 +13,7 @@ test:
 		$(TESTS)
 
 build:
-	#browserify -o lib/container.browser.built.js lib/container.browser.js
+	browserify -o lib/container.browser.built.js lib/container.browser.js
 
 install:
 	npm install
