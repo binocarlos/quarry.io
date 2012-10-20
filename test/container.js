@@ -80,21 +80,20 @@ describe('container', function(){
   })
 
 
-/*
-  it('should be able to find children within a context', function (done) {
+  it('should be able to find children within a context', function() {
 
     var generateImage = function(className){
-      return containerFactory('image').addClass(className);
+      return warehouse.new('image').addClass(className);
     }
 
     var generateGallery = function(className){
-      return containerFactory('gallery').addClass(className);
+      return warehouse.new('gallery').addClass(className);
     }
 
     var redGallery = generateGallery('red');
     var blueGallery = generateGallery('blue');
 
-    var base = containerFactory();
+    var base = warehouse.new();
 
     base.append([redGallery, blueGallery]);
 
@@ -102,28 +101,23 @@ describe('container', function(){
 
     redGallery.append(img);
 
-    base.find('image.picasso', '.red', function(error, resultsContainer){
-      resultsContainer.at(0).should.equal(img);
-      done();
-    });
-
+    base.find('image.picasso', '.red').quarryid().should.equal(img.quarryid());
   })
 
-
-  it('should be able to find children with attributes', function (done) {
+  it('should be able to find children with attributes', function() {
 
     var generateImage = function(className){
-      return containerFactory('image').addClass(className);
+      return warehouse.new('image').addClass(className);
     }
 
     var generateGallery = function(className){
-      return containerFactory('gallery').addClass(className);
+      return warehouse.new('gallery').addClass(className);
     }
 
     var redGallery = generateGallery('red');
     var blueGallery = generateGallery('blue');
 
-    var base = containerFactory();
+    var base = warehouse.new();
 
     base.append([redGallery, blueGallery]);
 
@@ -131,12 +125,8 @@ describe('container', function(){
 
     redGallery.append(img);
 
-    base.find('image.picasso[size>100]', '.red', function(error, resultsContainer){
-      resultsContainer.at(0).should.equal(img);
-      done();
-    });
+    base.find('image.picasso[size>=120]', '.red').eq(0).quarryid().should.equal(img.quarryid());
 
   })
 
-*/
 })
