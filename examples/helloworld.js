@@ -26,6 +26,8 @@ var generateImage = function(className){
 
     redGallery.append(img);
 
+    //base.find('.red', 'hello', 'apples')
+
     eyes.inspect(base.find('.red').toJSON());
 /*
 

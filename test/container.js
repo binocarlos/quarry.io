@@ -2,7 +2,7 @@ var io = require('../');
 var eyes = require('eyes');
 
 // we create the root warehouse with a basic supply chain
-var warehouse = io.proxy(function(packet, callback){
+var warehouse = io.warehouse(function(packet, callback){
   callback(null, packet);
 })
 
@@ -40,14 +40,6 @@ describe('container', function(){
     test.id().should.equal('Big Apple');
     test.tagname().should.equal('product');
 
-
-  })
-
-  it('should be an event emitter', function (done) {
-
-    var test = warehouse.new();
-    test.on('foo', done);
-    test.emit('foo');
 
   })
 

@@ -1,21 +1,34 @@
 #warehouse
-a named network resource
+Warehouses are the routers of quarry.io
 
-a warehouse has a hostname which can be routed to - this will be DNS name of server + id of warehouse
+They are what decides where packets end-up.
 
-it has a middleware stack so can decide itself how to handle packets
+They have a middleware stack - each is a fn(req, res, next) just like express.js
 
-every time containers are loaded - they are scanned for routes
+req and res are bootstrapped versions of packet.req and packet.res
 
-if an alternate route is found - the container is branched and a request sent out to the new route
+You can mount middleware either raw (in which case-ordering decides)
 
-each warehouse must be able to contact every other warehouse
+Or using protocol / method combinations:
 
-you can create sub-nets but everywhere must be routable...
+	// add a function directly onto the middleware stack
+	warehouse.use(function(req, res, next){
 
+	})
 
-##Routes
+	// route all packets with method='select' here
+	warehouse.use('select', function(req, res, next){
 
-the routing information might contain different hops
+	})
 
+	// protocol based routing
+	warehouse.use('mongo://', function(req, res, next){
 
+	})
+
+Most often there will be one main (optimized) routing function that can decide to
+split by protocol / users
+
+If you call req.proxy and provide a supply chain, the packet is sent down it
+
+If you call res.send the packet is returned down the supply chain it arrived on.
