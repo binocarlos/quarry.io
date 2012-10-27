@@ -4,7 +4,6 @@ var fs = require('fs');
 
 io
 .warehouse({
-	id:'root',
 	hostname:'root.warehouse'
 })
 .use(io.supplier('ram', {
