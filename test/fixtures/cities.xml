@@ -1,5 +1,5 @@
 <folder id="places">
-	<country class="big apples" name="UK">
+	<country class="big apples" name="England">
 		<city class="south" name="Bristol" team="Bristol City">
 			<area name="St. Pauls" class="poor" population="103" />
 			<area name="Redland" class="rich" population="79" />
@@ -14,7 +14,7 @@
 			<area name="Edgbaston" class="rich" population="183" />
 		</city>
 		<city class="midlands" name="Nottingham" team="Nottingham Forest">
-			<area name="Edgbaston" class="rich" population="183" />
+			<area name="Trent" class="rich" population="183" />
 		</city>
 		<city class="north" name="Liverpool" team="Everton">
 			<area name="Everton" class="poor" population="89" />

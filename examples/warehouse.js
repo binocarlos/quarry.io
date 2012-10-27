@@ -12,9 +12,10 @@ io
 }))
 .ready(function(warehouse){
 
-  warehouse('city area.poor', 'country, place').ship(function(results){
+  warehouse('city area.rich', 'country[name^=s]').ship(function(results){
 
   	console.log('-------------------------------------------');
+  	console.log('here are results');
   	eyes.inspect(results.toJSON());
     
   })
