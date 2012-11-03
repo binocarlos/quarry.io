@@ -1,0 +1,4 @@
+<folder name="dbs">
+	<warehouse id="cities1" route="quarry://ram.quarry.io/cities.xml" class="db" name="XML Cities" />
+	<warehouse id="cities2" route="quarry://ram.quarry.io/cities.json" class="db" name="JSON Cities" />
+</folder>

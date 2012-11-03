@@ -48,11 +48,13 @@ describe('container', function(){
     var parent = warehouse.new();
     var child = warehouse.new();
 
+    child.attr('fruit', 'apples');
+
     parent.append(child);
 
     parent.children().count().should.equal(1);
-    parent.children().eq(0).quarryid().should.equal(child.quarryid());
-
+    parent.children().eq(0).attr('fruit').should.equal('apples');
+    
   })
 
 
@@ -67,8 +69,6 @@ describe('container', function(){
     parent.append(child);
 
     parent.find('.red').attr('test').should.equal(10);
-
-
   })
 
 
@@ -85,15 +85,15 @@ describe('container', function(){
     var redGallery = generateGallery('red');
     var blueGallery = generateGallery('blue');
 
-    var base = warehouse.new();
-
-    base.append([redGallery, blueGallery]);
-
     var img = generateImage('picasso').attr('size', 120);
 
     redGallery.append(img);
 
-    base.find('image.picasso', '.red').quarryid().should.equal(img.quarryid());
+    var base = warehouse.new();
+
+    base.append([redGallery, blueGallery]);
+
+    base.find('image.picasso', '.red').attr('size').should.equal(120);
   })
 
   it('should be able to find children with attributes', function() {
@@ -109,15 +109,14 @@ describe('container', function(){
     var redGallery = generateGallery('red');
     var blueGallery = generateGallery('blue');
 
+    var img = generateImage('picasso').attr('size', 120);
+    redGallery.append(img);
+
     var base = warehouse.new();
 
     base.append([redGallery, blueGallery]);
 
-    var img = generateImage('picasso').attr('size', 120);
-
-    redGallery.append(img);
-
-    base.find('image.picasso[size>=120]', '.red').eq(0).quarryid().should.equal(img.quarryid());
+    base.find('image.picasso[size>=120]', '.red').attr('size').should.equal(120);
 
   })
 
