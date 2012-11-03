@@ -4,7 +4,7 @@
 			<area quarryid="2b7fd597-871d-436f-a703-1e1ebfb79837" class="poor" name="St. Pauls" population="103" />
 			<area quarryid="101b5c8e-ab42-4621-9042-29637d2dde0d" class="rich" name="Redland" population="79" />
 			<area quarryid="54c75253-56d2-4019-9569-63f538003ef6" class="poor" name="Easton" population="38" />
-			<area quarryid="0bab425c-ca42-4e37-a036-067fff65857d" class="poor" name="Lockleaze" fruit="apples" />
+			<area quarryid="017844d3-b10d-4158-acc8-88125fd2d0e8" class="poor" name="Lockleaze" fruit="apples" />
 		</city>
 		<city quarryid="c5b2e1c1-84c1-478d-a580-3a7459a1c7a3" class="south" name="London" team="Arsenal">
 			<area quarryid="dbf397f7-98c5-4f91-be56-7b49a2787a3e" class="rich" name="Westminster" population="298" />

@@ -1,8 +1,5 @@
 <folder id="folder" quarryid="93985572-6fcf-4149-9ffe-af090d46c286" name="dbs">
 	<warehouse id="citiesxml" quarryid="36521120-315c-469c-9f53-68925465d9b5" route="quarry://ram.quarry.io/cities.xml" class="db" name="XML Cities" />
 	<warehouse id="citiesjson" quarryid="36521120-315c-469c-9f53-68925465d9b5" route="quarry://ram.quarry.io/cities.json" class="db" name="JSON Cities" />
-	<warehouse id="fruitxml" quarryid="587ccd0f-e9c4-4291-9887-d04d0699891d" route="quarry://ram.quarry.io/fruit.xml" class="db" name="XML Fruit" />
-	<warehouse id="fruitjson" quarryid="05a0d24a-0d0b-491f-932f-82a021fc5f57" route="quarry://ram.quarry.io/fruit.json" class="db" name="JSON Fruit" />
-	<warehouse id="localfiles" quarryid="6e9f7d26-ccee-4e78-9670-ac9aaaed5d4d" route="quarry://files.quarry.io/local" class="db" name="Local Files" />
-	<warehouse id="flickr" quarryid="ec21efcb-7845-4fbe-864d-b37268f91516" route="quarry://api.quarry.io/flickr" class="db images" name="Flickr" />
+	<warehouse id="quarrydb" quarryid="bd112a99-5424-44d0-8335-7e61aa4f8f49" route="quarry://quarrydb.quarry.io/cities" class="db" name="Quarry Cities" />
 </folder>

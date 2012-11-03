@@ -67,24 +67,38 @@ describe('warehouse', function(){
 
 	it('should route to multiple suppliers', function(done){
 
-		var xml_supplier = io.supplier('file/xml', {
-			hostname:'xml.supplier',
-			file:__dirname + '/../test/fixtures/cities.xml'
+		var ramprovider = io.provider({
+		  hostname:'ram.quarry.io'
+		}).produce(function(filename){
+
+		  var ext = filename.match(/\.(\w+)$/)[1]
+
+		  return io.supplierchain('file/' + ext, {
+		    hostname:'ram.quarry.io',
+		    resource:filename,
+		    file:__dirname + '/fixtures/' + filename
+		  })
+
+		})
+		var defaultsupplychain = io.supplierchain('file/xml', {
+		  hostname:'root.quarry.io',
+		  file:__dirname + '/fixtures/stack.xml'
 		})
 
-	  io
-		.warehouse({
-			hostname:'root.warehouse'
+
+		io.router({
+		  hostname:'quarry.io'
 		})
-		.use(xml_supplier)
+		.route('ram.quarry.io', ramprovider.supplychain())
+		.use(defaultsupplychain)
 		.ready(function(warehouse){
 
-		  warehouse('city area.rich', 'country[name^=s]').ship(function(results){
+		  warehouse('city[name^=s]', '.db').ship(function(results){
 
-		  	results.attr('name').should.equal('Meadows');
+		  	results.eq(0).attr('name').should.equal('Sydney');
 		  	done();
-
 		  })
+
 		})
 	})
 
