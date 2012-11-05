@@ -23,7 +23,9 @@
 
 var Warehouse = require('./warehouse');
 var Container = require('./container');
-var BackboneDeep = require('./vendor/backbonedeep');
+var backbonenested = require('./vendor/backbonenested');
+var Packet = require('./packet');
+var utils = require('./utils');
 
 /*
   Quarry.io
@@ -36,7 +38,7 @@ var BackboneDeep = require('./vendor/backbonedeep');
 
 var io = {
 
-  version:'0.0.4'
+  version:'0.0.2'
 
 }
 
@@ -54,12 +56,4 @@ io.warehouse = function(options){
 /*
   create a new container with no warehouse
  */
-io.new = Container();
-
-/*
-  create a new backbone model for the attr
-  extends the deep model using the user supplied object
- */
-io.model = function(obj){
-  return BackboneDeep.extend(obj);
-}
+io.new = Container;

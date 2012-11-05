@@ -1,4 +1,13 @@
+/*!
+ * Connect - HTTPServer
+ * Copyright(c) 2010 Sencha Inc.
+ * Copyright(c) 2011 TJ Holowaychuk
+ * MIT Licensed
+ */
+
 /*
+  Modifications for quarry.io
+  
   Copyright (c) 2012 All contributors as noted in the AUTHORS file
 
   This file is part of quarry.io
@@ -25,52 +34,48 @@ var _ = require('underscore');
 var async = require('async');
 var utils = require('./utils');
 var eyes = require('eyes');
-var Backbone = require('./vendor/backbone');
-var Proto = require('./warehouse/proto');
 
-
+module.exports = Warehouse;
 
 /*
   Quarry.io - Warehouse
   ---------------------
 
-  The main co-ordinating class for dealing with packets
 
-  The warehouse is basically a router for supply chains
-
-  It presents a middleware stack
-
-  You add middleware based on a route - the packet.route is used
-
-  The middleware is a
-
-    function(req, res, next)
-
-  It does not think about the packet
-
-  the request and response are hooked up by the warehouse
-
-  The warehouse will have supply chains associated with it which packets can be routed to
 
 
  */
 
-exports = module.exports = factory;
+var app = module.exports = {};
 
-/*
+// environment
 
-  Returns a factory function to create new containers
+var env = process.env.NODE_ENV || 'development';
 
-  This allows you to customize the container and model behaviour
-  before they are instantiated
-
- */
-function factory(options){
-  function instance(){
-    instance.handle.apply(instance, _.toArray(arguments));
+app.use = function(route, fn){
+  // default route to '/' - this is the default root warehouse
+  if ('string' != typeof route) {
+    fn = route;
+    route = '/';
   }
-  _.extend(instance, Proto);
-  _.extend(instance, Backbone.Events);
-  instance.initialize(options);
-  return instance;
-}
+
+  // wrap sub-warehouses
+  if ('function' == typeof fn.handle) {
+    var server = fn;
+    fn.route = route;
+    fn = function(packet, next){
+      server.handle(packet, next);
+    };
+  }
+
+  // strip trailing slash
+  if ('/' == route[route.length - 1]) {
+    route = route.slice(0, -1);
+  }
+
+  // add the middleware
+  debug('use %s %s', route || '/', fn.name || 'anonymous');
+  this.stack.push({ route: route, handle: fn });
+
+  return this;
+};

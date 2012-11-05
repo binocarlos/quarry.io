@@ -18,31 +18,36 @@
 */
 
 /*
-  Quarry.io - Process Stack
-  -------------------------
-
-  Pass messages about in memory using plain old functions
-
-  
-
-
- */
-
-
-/*
   Module dependencies.
 */
 
 var _ = require('underscore');
 var async = require('async');
-var util = require("util");
+var utils = require('./utils');
 var eyes = require('eyes');
-var Stack = require('../stack');
+var nested = require('../vendor/backbonedeep');
 
-module.exports = ProcessStack;
+/*
+  Quarry.io - Packet
+  ------------------
 
-function ProcessStack(config){
-  Stack.apply(this, [config]);
-}
+  A packet is an RPC instruction
 
-util.inherits(ProcessStack, Stack);
+  It has req & res (request, response)
+
+ 
+
+
+ */
+
+var Route = nested.extend({
+
+  initialize:function(){
+   
+  }
+
+})
+
+
+
+module.exports = Route;

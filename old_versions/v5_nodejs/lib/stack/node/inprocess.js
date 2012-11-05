@@ -18,10 +18,10 @@
 */
 
 /*
-  Quarry.io - Process Stack
-  -------------------------
+  Quarry.io - InProcess Node
+  --------------------------
 
-  Pass messages about in memory using plain old functions
+  Passes messages using in-memory functions
 
   
 
@@ -37,12 +37,13 @@ var _ = require('underscore');
 var async = require('async');
 var util = require("util");
 var eyes = require('eyes');
-var Stack = require('../stack');
+var Node = require('../node');
 
-module.exports = ServerStack;
+module.exports = InProcessNode;
 
-function ServerStack(config){
-  Stack.apply(this, [config]);
+function InProcessNode(config){
+  Node.apply(this, [config]);
 }
 
-util.inherits(ServerStack, Stack);
+util.inherits(InProcessNode, Node);
+

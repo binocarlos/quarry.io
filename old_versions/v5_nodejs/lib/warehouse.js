@@ -21,45 +21,36 @@
   Module dependencies.
 */
 
-var Warehouse = require('./warehouse');
-var Container = require('./container');
-var BackboneDeep = require('./vendor/backbonedeep');
+var _ = require('underscore');
+var async = require('async');
+var utils = require('./utils');
+var eyes = require('eyes');
+var Proto = require('./proto');
+
+module.exports = Warehouse;
 
 /*
-  Quarry.io
-  ---------
+  Quarry.io - Warehouse
+  ---------------------
 
-  This is the generic entry point
+  The main co-ordinating class for dealing with packets
+
+  The warehouse is basically a router for supply chains
+
+  It presents a middleware stack
+
+  You add middleware based on a route - the packet.route is used
+
+  The middleware is a
+
+    function(req, res, next)
+
+  It does not think about the packet
+
+  the request and response are hooked up by the warehouse
+
+  The warehouse will have supply chains associated with it which packets can be routed to
 
 
  */
 
-var io = {
-
-  version:'0.0.4'
-
-}
-
-module.exports = io;
-
-/*
-  generates a warehouse which can reduce contracts and route packets
- */
-io.warehouse = function(options){
-
-  return new Warehouse(options);
-
-}
-
-/*
-  create a new container with no warehouse
- */
-io.new = Container();
-
-/*
-  create a new backbone model for the attr
-  extends the deep model using the user supplied object
- */
-io.model = function(obj){
-  return BackboneDeep.extend(obj);
-}

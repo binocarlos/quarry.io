@@ -203,7 +203,8 @@ Packet.prototype.convert_to_contract = function(type, force){
   var json = this.hasRequestBody() ? this.toJSON() : null;
 
   var packet_array = json ? [json] : [];
-  this.path('/contract/' + type);
+  this.protocol('route');
+  this.path('/' + type);
   this.req.body(packet_array);
   return this;
 }
@@ -258,41 +259,4 @@ Packet.prototype.branch = function(packet){
   this.add_contract_packet(packet);
 
   return this;
-}
-
-/*
-  When the res.send is called the results are passed via the provided function
-
- */
-Packet.prototype.filter = function(fn){
-
-  var original_send = _.bind(this.res.send, this.res);
-
-  this.res.send = function(body){
-    body = fn ? fn(body) : body;
-    original_send(body);
-  }
-}
-
-/*
-  Send the packet off down another supply chain
-
- */
-Packet.prototype.proxy = function(supply_chain){
-
-  if(!supply_chain){
-    return this;
-  }
-
-  var self = this;
-
-  // pipe the packet down the supply chain
-  supply_chain(this.clone(), function(result_packet){
-    if(result_packet.hasError()){
-      self.res.error(result_packet.error());
-    }
-    else{
-      self.res.send(result_packet.res.body());  
-    }
-  });
 }

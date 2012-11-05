@@ -207,11 +207,16 @@ function factory(warehouse){
       next_packet.req.header('fields', 'skeleton');
     }
     
+    console.log('-------------------------------------------');
+    console.log('branching');
     var all_results = [];
 
     // run the branch selects in parallel
     async.forEach(_.keys(urls), function(url, done){
       var input = urls[url];
+
+      console.log('-------------------------------------------');
+      console.log(url);
 
       // run the actual branch packet with the input
       var branch_packet = next_packet.clone();
@@ -223,8 +228,16 @@ function factory(warehouse){
 
       branch_packet.req.param('input', input);
 
+      console.log('-------------------------------------------');
+      console.log('-------------------------------------------');
+      console.log('branch packet');
+      eyes.inspect(branch_packet.toJSON());
+
       warehouse.run(branch_packet, function(branch_packet_results){
 
+        console.log('-------------------------------------------');
+        console.log('branch results');
+        eyes.inspect(branch_packet_results);
         function found_final_results(results){
           if(_.isArray(results.res.body())){
             all_results = all_results.concat(results.res.body());

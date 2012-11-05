@@ -58,6 +58,12 @@ module.exports.factory = function(apiwrapper, config){
 
   supplier_warehouse.wait();
 
+  supplier_warehouse.use(function(packet, next){
+    console.log('-------------------------------------------');
+    console.log('suppliuer');
+    eyes.inspect(packet.toJSON());
+    next();
+  })
 
   // setup the hostname insert for selects
   supplier_warehouse.before('quarry:///select', function(packet, next){

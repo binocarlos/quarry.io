@@ -63,14 +63,6 @@ function factory(warehouse, options){
   // maps quarry ids onto models
   var map = {};
 
-  function ensure_ids(forcontainer){
-    forcontainer.recurse(function(container){
-      if(!container.is_saved()){
-        container.quarryid(utils.quarryid());
-      }
-    })
-  }
-
   function prepare_insert_data(forcontainer){
     forcontainer.recurse(function(container){
       container.quarryid(utils.quarryid());
@@ -94,9 +86,7 @@ function factory(warehouse, options){
 
   var root_container = containerFactory(root_data);
 
-  if(options.create_ids){
-    ensure_ids(root_container);
-  }
+  options.create_ids && root_container.ensure_ids();
 
   insert_containers(root_container);
   

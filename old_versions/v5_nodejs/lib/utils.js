@@ -36,7 +36,7 @@ utils.notnull = function(val){
 
 utils.quarryid = function(short_version){
 
-  var pattern = short_version ? 'xxxxxx' : 'xxxxxxxxxxxxxxxxxxxxxxxx';
+  var pattern = short_version ? 'xxxxxx' : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
   
 	return pattern.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -106,7 +106,6 @@ utils.extendclass = function(protoProps, classProps) {
   child.extend = this.extend;
   return child;
 };
-
 
 /**
  * jQuery Deep extend

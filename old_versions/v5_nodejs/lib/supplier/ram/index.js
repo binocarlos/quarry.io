@@ -23,10 +23,12 @@
 
 var _ = require('underscore'),
     eyes = require('eyes'),
-    cacheFactory = require('../container/cache'),
+    cacheFactory = require('./cache'),
+    containerFactory = require('../../container'),
+    Supplier = require('../../supplier'),
     async = require('async');
 
-module.exports = factory;
+module.exports = RamSupplier;
 
 /*
   Quarry.io RAM Supplier
@@ -43,25 +45,46 @@ module.exports = factory;
 
  */
 
+function RamSupplier(options){
+  Supplier.apply(this, [options]);
+
+  console.log('-------------------------------------------');
+  console.log('-------------------------------------------');
+  console.log('new supplier');
+
+}
+
+util.inherits(RamSupplier, Supplier);
+
+RamSupplier.prototype.select = function(packet, next){
+
+}
+
+
 function factory(options){
 
-  options || (options = {});
+  var supplier = new RamSupplier(options);
 
-  var root_data = options.data || [];
+  supplier.use(function(packet, next){
 
-  function router(warehouse, ready_callback){
-    
-    var cache = cacheFactory(warehouse, {
-      data:root_data,
-      create_ids:true
-    })
+    if(packet.path()=='/select'){
+      supplier.select(packet, next);
+    }
+
+  })
+
+  return supplier;
+
 
     /*
 
         SELECT - searches for data based on a selector
 
      */
-    warehouse.use('quarry:///select', function(packet, next){
+    warehouse.use('quarry', '/select', function(packet, next){
+
+      console.log('-------------------------------------------');
+      console.log('at select');
       var previous = packet.req.param('input');
       var selector = packet.req.body();
       var skeleton = packet.req.header('fields')=='skeleton';
@@ -73,6 +96,10 @@ function factory(options){
         skeleton:skeleton,
         tree:tree
       })
+
+      console.log('-------------------------------------------');
+      console.log('sending results');
+      eyes.inspect(raw_results);
 
       packet.res.send(raw_results);
     })

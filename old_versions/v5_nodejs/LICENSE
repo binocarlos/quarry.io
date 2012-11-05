@@ -1,4 +1,3 @@
-/*
   Copyright (c) 2012 All contributors as noted in the AUTHORS file
 
   This file is part of quarry.io
@@ -15,34 +14,3 @@
 
   You should have received a copy of the GNU Lesser General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-/*
-  Quarry.io - Process Stack
-  -------------------------
-
-  Pass messages about in memory using plain old functions
-
-  
-
-
- */
-
-
-/*
-  Module dependencies.
-*/
-
-var _ = require('underscore');
-var async = require('async');
-var util = require("util");
-var eyes = require('eyes');
-var Stack = require('../stack');
-
-module.exports = NetworkStack;
-
-function NetworkStack(config){
-  Stack.apply(this, [config]);
-}
-
-util.inherits(NetworkStack, Stack);

@@ -18,48 +18,41 @@
 */
 
 /*
+  Quarry.io - Process Stack
+  -------------------------
+
+  Pass messages about in memory using plain old functions
+
+  
+
+
+ */
+
+
+/*
   Module dependencies.
 */
 
-var Warehouse = require('./warehouse');
-var Container = require('./container');
-var BackboneDeep = require('./vendor/backbonedeep');
+var _ = require('underscore');
+var async = require('async');
+var util = require("util");
+var eyes = require('eyes');
+var Stack = require('../stack');
 
-/*
-  Quarry.io
-  ---------
+module.exports = Node;
 
-  This is the generic entry point
-
-
- */
-
-var io = {
-
-  version:'0.0.4'
-
+function Node(config){
+  Node.apply(this, [config]);
 }
 
-module.exports = io;
-
-/*
-  generates a warehouse which can reduce contracts and route packets
- */
-io.warehouse = function(options){
-
-  return new Warehouse(options);
-
+Node.prototype.initialize = function(options){
+  
 }
 
-/*
-  create a new container with no warehouse
- */
-io.new = Container();
+Node.prototype.boot = function(){
+  
+}
 
-/*
-  create a new backbone model for the attr
-  extends the deep model using the user supplied object
- */
-io.model = function(obj){
-  return BackboneDeep.extend(obj);
+Node.prototype.req = function(packet, callback){
+  
 }
