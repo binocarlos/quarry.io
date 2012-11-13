@@ -27,7 +27,11 @@
     "restler": "~2.0.1",
     "bigint": "~0.3.9",
     "methods": "0.0.1",
-    "express": "~3.0.1"
+    "express": "~3.0.2",
+    "shell": "~0.2.7",
+    "socket.io-express": "0.0.1",
+    "connect-redis": "~1.4.5",
+    "redis": "~0.8.2"
   },
   "devDependencies": {
     "mocha": "*",

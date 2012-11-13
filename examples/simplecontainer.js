@@ -8,5 +8,12 @@ var container = io.new('product', {
 .addClass('apples')
 //.id('table')
 
+var caption = io.new('caption', {
+	name:'Review',
+	text:'This is good'
+})
+.addClass('positive')
 
-eyes.inspect(container.eq(0).toJSON());
+container.append(caption);
+
+eyes.inspect(container.find('caption.positive').toJSON());

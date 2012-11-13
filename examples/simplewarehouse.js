@@ -1,12 +1,47 @@
 var io = require('../');
 var eyes = require('eyes');
 
-var container = io.new('product', {
-	name:'Table',
-	price:120
+io.warehouse()
+/*
+.use(function(req, res, next){
+	res.send('<product></product>');
 })
-.addClass('apples')
-//.id('table')
+
+.use(io.supplier('ram.file', {
+	path:__dirname+'/ramfiles/fruit.xml'
+}))
 
 
-eyes.inspect(container.eq(0).toJSON());
+.use(function(req, res, next){
+	eyes.inspect(req.toJSON());
+})
+*/
+.use(io.provider(function(path, callback){
+	console.log('-------------------------------------------');
+	console.log('make supplier');
+	eyes.inspect(path);
+	
+}))
+.ready(function(warehouse){
+	
+	warehouse('fruit').ship(function(results){
+
+		console.log('-------------------------------------------');
+		console.log('results');
+		eyes.inspect(results.errors());
+	})
+	
+
+})
+
+
+
+
+/*
+	var supplier = io.supplier('ram.file', {
+		format:'xml',
+		file:__dirname+'/ramfiles/' + path
+	})
+	callback(null, supplier);
+
+	*/

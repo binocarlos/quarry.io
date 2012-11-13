@@ -1,0 +1,4 @@
+{
+	"type":"provider",
+	"driver":"ramfile.xml"
+}
