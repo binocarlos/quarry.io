@@ -1,14 +1,15 @@
 module.exports = function(io){
 
+	var warehouse = io.warehouse();
+
+	// the main project router
+	// this decides what path to use for a / request
 	warehouse.use(function(req, res, next){
-		console.log('-------------------------------------------');
-		console.log('-------------------------------------------');
-		console.log('root warehouse next');
-		next();
+		if(req.path()=='/'){
+				req.send('at root home')
+		}
 	})
 
-	return function(req, res, next){
-		res.send('/');
-	}
+	return warehouse;
 	
 }

@@ -7,8 +7,11 @@ io
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack'
 })
-.ready(function(){
+.ready(function(warehouse, network){
 	console.log('-------------------------------------------');
 	console.log('-------------------------------------------');
 	console.log('stack is ready');
+	warehouse('fruit').ship(function(fruit){
+
+	})
 })
