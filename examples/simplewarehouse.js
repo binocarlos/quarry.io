@@ -1,7 +1,7 @@
 var io = require('../');
 var eyes = require('eyes');
 
-io.warehouse()
+io.reception()
 /*
 .use(function(req, res, next){
 	res.send('<product></product>');
@@ -24,11 +24,11 @@ io.warehouse()
 }))
 .ready(function(warehouse){
 	
-	warehouse('fruit').ship(function(results){
+	warehouse('fruit caption').ship(function(results){
 
 		console.log('-------------------------------------------');
 		console.log('results');
-		eyes.inspect(results.errors());
+		eyes.inspect(results.toJSON());
 	})
 	
 

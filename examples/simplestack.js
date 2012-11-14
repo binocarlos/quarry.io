@@ -7,7 +7,7 @@ io
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack'
 })
-.ready(function(network){
+.ready(function(){
 	console.log('-------------------------------------------');
 	console.log('-------------------------------------------');
 	console.log('stack is ready');

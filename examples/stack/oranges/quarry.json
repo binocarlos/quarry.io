@@ -1,4 +1,5 @@
 {
-	"type":"provider",
-	"driver":"ramfile.xml"
+	"type":"supplier",
+	"driver":"ram.file",
+	"format":"xml"
 }
