@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # @(#)$Id$
 #
@@ -37,16 +37,18 @@ mkdir -p $sources_folder
 apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
 echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list
 
+echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | sudo tee /etc/apt/sources.list.d/saltstack.list
+wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | sudo apt-key add -
+
 # this is how to run the above normally using sudo
 #echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/10gen.list
-
-# Update repos
-apt-get update
 
 ##########################################################################################
 # This makes sure we have 'basic' packages like a build tool for a start
 installlog "Installing Basic Apt Packages"
-apt-get install build-essential git python-software-properties curl -y
+apt-get install python-software-properties -y
+sudo apt-get update
+apt-get install build-essential git curl -y
 
 ##########################################################################################
 # Installing Redis via Apt (memcache with Disk backup)
@@ -74,6 +76,11 @@ installlog "Installing Most Recent Stable netpbm"
 apt-get install netpbm -y
 
 ##########################################################################################
+# Installing salt
+installlog "Installing Most Recent Stable Salt Stack"
+apt-get install salt-master salt-minion -y
+
+##########################################################################################
 # Download and make, install ZeroMQ (networking stack)
 zeromq_version="3.2.0"
 zeromq_file="zeromq-$zeromq_version-rc1.tar.gz"
@@ -96,11 +103,6 @@ fi
 
 ##########################################################################################
 # Download and make, install node.js
-
-#sudo apt-get install python-software-properties
-#sudo add-apt-repository ppa:chris-lea/node.js
-#sudo apt-get update
-#sudo apt-get install nodejs npm
 
 nodejs_version="0.8.8"
 nodejs_file="node-v$nodejs_version.tar.gz"
@@ -127,7 +129,7 @@ fi
 if [ ! -d "$quarryio_home/node_modules" ]; then
 	installlog "installing node modules"
 	cd $quarryio_home
-	npm install https://github.com/mscdex/zeromq.node/tarball/master
-	ldconfig
 	npm install
 fi
+
+exit

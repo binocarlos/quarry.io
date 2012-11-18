@@ -5,7 +5,8 @@ io
 .network('development', require('./network.json'))
 .stack({
 	hostname:'dev.jquarry.com',
-	path:__dirname+'/stack'
+	path:__dirname+'/stack',
+	
 })
 .ready(function(network){
 
