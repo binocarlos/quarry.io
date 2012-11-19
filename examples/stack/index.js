@@ -1,3 +1,5 @@
+var eyes = require('eyes');
+
 module.exports = function(io){
 
 	/*
@@ -7,9 +9,9 @@ module.exports = function(io){
 
 	 */
 	return function(req, res, next){
-		console.log('-------------------------------------------');
-		console.log('-------------------------------------------');
-		console.log('main routing function!');
+
+		// redirect to the default database path
+		req.redirect('/oranges');
 	}
 
 }
