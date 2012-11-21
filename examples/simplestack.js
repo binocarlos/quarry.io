@@ -24,6 +24,7 @@ io
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
 			console.log('fruit is loaded');
+			eyes.inspect(fruit.toJSON());
 			
 		})
 	})

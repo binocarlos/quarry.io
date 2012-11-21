@@ -10,8 +10,14 @@ module.exports = function(io){
 	 */
 	return function(req, res, next){
 
-		// redirect to the default database path
-		req.redirect('/oranges');
+		if(req.path()=='/'){
+			// redirect to the default database path
+			req.redirect('/ram');	
+		}
+		else{
+			next();
+		}
+		
 	}
 
 }

@@ -1,0 +1,5 @@
+{
+	"type":"supplier",
+	"driver":"ram.file",
+	"format":"json"
+}
