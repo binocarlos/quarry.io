@@ -1,5 +1,6 @@
 {
 	"type":"supplier",
 	"driver":"ram.file",
+	"directory":"/xmlfiles",
 	"format":"xml"
 }

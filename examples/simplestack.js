@@ -20,11 +20,12 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-		warehouse('folder fruit').ship(function(fruit){
+		warehouse('folder city').ship(function(cities, errors){
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
-			console.log('fruit is loaded');
-			eyes.inspect(fruit.toJSON());
+			console.log('cities is loaded');
+			eyes.inspect(cities.toJSON());
+			eyes.inspect(errors);
 			
 		})
 	})

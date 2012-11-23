@@ -12,7 +12,7 @@ module.exports = function(io){
 
 		if(req.path()=='/'){
 			// redirect to the default database path
-			req.redirect('/ram');	
+			req.redirect('/ram/file/xml/cities');	
 		}
 		else{
 			next();
