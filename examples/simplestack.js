@@ -20,7 +20,7 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-		warehouse('folder city').ship(function(cities, errors){
+		warehouse('city[name^=b]').ship(function(cities, errors){
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
 			console.log('cities is loaded');

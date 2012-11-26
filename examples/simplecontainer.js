@@ -1,19 +1,24 @@
 var io = require('../');
 var eyes = require('eyes');
 
-var container = io.new('product', {
-	name:'Table',
-	price:120
-})
-.addClass('apples')
-//.id('table')
+var generateImage = function(className){
+      return io.new('image').addClass(className);
+    }
 
-var caption = io.new('caption', {
-	name:'Review',
-	text:'This is good'
-})
-.addClass('positive')
+    var generateGallery = function(className){
+      return io.new('gallery').addClass(className);
+    }
 
-container.append(caption);
+    var redGallery = generateGallery('red');
+    var blueGallery = generateGallery('blue');
 
-eyes.inspect(container.find('caption.positive').toJSON());
+    var img = generateImage('picasso').attr('size', 120);
+
+    redGallery.append(img);
+
+    var base = io.new();
+
+    base.append([redGallery, blueGallery]);
+
+    //base.find('image.picasso', '.red').attr('size').should.equal(120);
+    eyes.inspect(base.toJSON());
