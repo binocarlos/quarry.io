@@ -16,9 +16,10 @@ var generateImage = function(className){
 
     redGallery.append(img);
 
-    var base = io.new();
+    var base = io.new('folder');
 
     base.append([redGallery, blueGallery]);
 
     //base.find('image.picasso', '.red').attr('size').should.equal(120);
-    eyes.inspect(base.toJSON());
+    
+    eyes.inspect(base.descendents().toJSON());
