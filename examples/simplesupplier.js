@@ -5,8 +5,7 @@ io
 .network('development', require('./network.json'))
 .stack({
 	hostname:'dev.jquarry.com',
-	path:__dirname+'/stack',
-	
+	path:__dirname+'/stack'
 })
 .ready(function(network){
 
@@ -20,29 +19,34 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-
-		warehouse('folder city[name^=bris]').ship(function(cities, errors){
+		warehouse('folder').ship(function(folder){
 
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
-			console.log('cities is loaded');
-			eyes.inspect(cities.toJSON());
+			console.log('folder is loaded');
+			eyes.inspect(folder.toJSON());
+			
+			folder('city[name^=b]').ship(function(cities){
+
+				console.log('-------------------------------------------');
+				console.log('-------------------------------------------');
+				console.log('cities is loaded');
+				eyes.inspect(cities.toJSON());
 /*
-			var area = io.new('area', {
-				name:'Hotwells',
-				population:320
-			}).addClass('rich')
+				var area = io.new('area', {
+					name:'Hotwells',
+					population:320
+				}).addClass('rich')
 
-			cities.append(area, function(results, errors){
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('appended');
-				eyes.inspect(results.toJSON());
-				eyes.inspect(errors);
-			})
-
-			//eyes.inspect(errors);
+				cities.append(area, function(results, errors){
+					console.log('-------------------------------------------');
+					console.log('-------------------------------------------');
+					console.log('appended');
+					eyes.inspect(results.toJSON());
+					eyes.inspect(errors);
+				})
 */			
+			})
 		})
 	})
 	
