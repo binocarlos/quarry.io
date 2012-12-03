@@ -28,6 +28,13 @@ Then type:
 
 	vagrant gem install vagrant-salt
 
+On Windows you will probably first have to run:
+
+C:\vagrant\vagrant\embedded\devkitvars.bat
+
+This will set up the correct paths to the ruby build environment 
+inside vagrant.
+
 Now you are ready to go.
 
 #Starting & Stopping

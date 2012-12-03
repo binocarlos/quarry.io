@@ -7,7 +7,7 @@ $home = "/srv/quarryio"
 Vagrant::Config.run do |config|
 
   # the name of our dev box inside of vagrant cache
-  config.vm.box = "quarryio_ubuntu_vagrant32"
+  config.vm.box = "precise32"
   
   # Ubuntu 12.04.1 LTS x86_32 (Guest Additions 4.1.18)
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"

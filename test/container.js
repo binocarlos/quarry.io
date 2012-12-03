@@ -1,12 +1,14 @@
 var io = require('../');
-var eyes = require('eyes');
 
 describe('container', function(){
 
-	it('should be a function', function () {
-    var container = io.new();
+  it('should be a function', function () {
+    io.new.should.be.a('function');
+  })
 
-		container.should.be.a('function');
+  it('should return a function', function () {
+    var container = io.new();
+    container.should.be.a('function');
   })
 
   it('should allow nested attributes', function () {
@@ -99,6 +101,7 @@ describe('container', function(){
     base.append([redGallery, blueGallery]);
 
     base.find('image.picasso', '.red').attr('size').should.equal(120);
+	base.find('image.picasso', '.blue').should.have.length(0);
   })
 
   it('should be able to find children with attributes', function() {
