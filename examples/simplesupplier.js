@@ -32,7 +32,7 @@ io
 				console.log('-------------------------------------------');
 				console.log('cities is loaded');
 				eyes.inspect(cities.toJSON());
-/*
+
 				var area = io.new('area', {
 					name:'Hotwells',
 					population:320
@@ -45,7 +45,7 @@ io
 					eyes.inspect(results.toJSON());
 					eyes.inspect(errors);
 				})
-*/			
+
 			})
 		})
 	})
