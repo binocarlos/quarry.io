@@ -1,25 +1,144 @@
 var io = require('../');
+var eyes = require('eyes');
 
 describe('container', function(){
-
-  it('should be a function', function () {
-    io.new.should.be.a('function');
-  })
 
   it('should return a function', function () {
     var container = io.new();
     container.should.be.a('function');
   })
 
-  it('should allow nested attributes', function () {
+  it('tagname should set, chain, reset and get', function () {
+    var container = io.new();
+	// Set and test chain
+	container.tagname('product').should.equal(container);
+	// Test get
+    container.tagname().should.equal('product');
+	// Test reset (and chain and get)
+    container.tagname('item').tagname().should.equal('item');
+  })
+
+  it('id should set, chain, reset and get', function () {
+    var container = io.new();
+	// Set and test chain
+	container.id('product').should.equal(container);
+	// Test get
+    container.id().should.equal('product');
+	// Test reset (and chain and get)
+    container.id('item').id().should.equal('item');
+  })
+
+  it('attr should set, chain, reset and get attributes', function () {
+    var container = io.new();
+	// Test get of whole empty attr
+	container.attr().should.be.a.null;
+	// Set and test chain
+    container.attr('price', 25).should.equal(container);
+	// Test get of whole attr
+	container.attr().should.eql({price:25});
+	// Test get attr
+    container.attr('price').should.equal(25);
+	// Test reset (and chain and get)
+    container.attr('price', 50).attr('price').should.equal(50);
+  })
+
+  it('attr should set and get nested attributes into blank', function () {
+    var container = io.new();
+	// Set nested and test chain
+    container.attr('fruit.apples', 25).should.equal(container);
+    // Set nested via get object
+	container.attr('fruit').pears = 10;
+	// Test get object set as nested
+    container.attr('fruit').apples.should.equal(25);
+	// Test nested get set as nested
+    container.attr('fruit.apples').should.equal(25);
+	// Test get object set via get
+    container.attr('fruit').pears.should.equal(10);
+	// Test nested get set via get
+    container.attr('fruit.pears').should.equal(10);
+  })
+
+  it('attr should set and get nested attributes into object attr', function () {
     var container = io.new({
       'fruit':{}
     })
 
-    container.attr('fruit.apples', 25);
-
+	// Set nested and test chain
+    container.attr('fruit.apples', 25).should.equal(container);
+    // Set nested via get object
+	container.attr('fruit').pears = 10;
+	// Test get object set as nested
     container.attr('fruit').apples.should.equal(25);
+	// Test nested get set as nested
+    container.attr('fruit.apples').should.equal(25);
+	// Test get object set via get
+    container.attr('fruit').pears.should.equal(10);
+	// Test nested get set via get
+    container.attr('fruit.pears').should.equal(10);
   })
+
+  it('addClass should work', function () {
+    var container = io.new();
+	// Add and test chain
+	container.addClass('product').should.equal(container);
+	// Test has
+	container.hasClass('product').should.equal(true);
+	container.hasClass('large').should.equal(false);
+	// Add another
+	container.addClass('large');
+	// Test has
+	container.hasClass('product').should.equal(true);
+	container.hasClass('large').should.equal(true);
+	container.hasClass('plastic').should.equal(false);
+	// Add another
+	container.addClass('plastic');
+	// Test has
+	container.hasClass('product').should.equal(true);
+	container.hasClass('large').should.equal(true);
+	container.hasClass('plastic').should.equal(true);
+	container.hasClass('bad').should.equal(false);
+  })
+
+  it('removeClass should work', function () {
+
+	var container;
+
+	function maketripleclass() {
+		return io.new()
+		.addClass('product')
+		.addClass('large')
+		.addClass('plastic');
+	};
+
+	container = maketripleclass();
+	// Remove first and test chain
+	container.removeClass('product').should.equal(container);
+	// Check result
+	container.hasClass('product').should.equal(false);
+	container.hasClass('large').should.equal(true);
+	container.hasClass('plastic').should.equal(true);
+	container.hasClass('bad').should.equal(false);
+
+	container = maketripleclass();
+	// Remove middle and test chain
+	container.removeClass('large').should.equal(container);
+	// Check result
+	container.hasClass('product').should.equal(true);
+	container.hasClass('large').should.equal(false);
+	container.hasClass('plastic').should.equal(true);
+	container.hasClass('bad').should.equal(false);
+
+	container = maketripleclass();
+	// Remove last and test chain
+	container.removeClass('plastic').should.equal(container);
+	// Check result
+	container.hasClass('product').should.equal(true);
+	container.hasClass('large').should.equal(true);
+	container.hasClass('plastic').should.equal(false);
+	container.hasClass('bad').should.equal(false);
+  })
+
+
 
   it('should allow blank construction and attribute manipulation', function () {
 
