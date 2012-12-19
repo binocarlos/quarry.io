@@ -77,8 +77,8 @@ apt-get install netpbm -y
 
 ##########################################################################################
 # Installing salt
-installlog "Installing Most Recent Stable Salt Stack"
-apt-get install salt-master salt-minion -y
+#installlog "Installing Most Recent Stable Salt Stack"
+#apt-get install salt-master salt-minion -y
 
 ##########################################################################################
 # Download and make, install ZeroMQ (networking stack)

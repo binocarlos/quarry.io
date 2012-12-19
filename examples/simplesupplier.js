@@ -7,7 +7,7 @@ io
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack'
 })
-.ready(function(network){
+.listen(function(network){
 
 	console.log('-------------------------------------------');
 	console.log('-------------------------------------------');
@@ -38,13 +38,14 @@ io
 					population:320
 				}).addClass('rich')
 
-				cities.append(area, function(results, errors){
+				cities.append(area, function(res){
 					console.log('-------------------------------------------');
 					console.log('-------------------------------------------');
 					console.log('appended');
-					eyes.inspect(results.toJSON());
-					eyes.inspect(errors);
+					eyes.inspect(res.toJSON());
 				})
+
+
 
 			})
 		})
