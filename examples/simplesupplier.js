@@ -7,6 +7,13 @@ io
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack'
 })
+
+
+
+
+
+
+
 .listen(function(network){
 
 	console.log('-------------------------------------------');
@@ -42,7 +49,7 @@ io
 					console.log('-------------------------------------------');
 					console.log('-------------------------------------------');
 					console.log('appended');
-					eyes.inspect(res.toJSON());
+					eyes.inspect(res);
 				})
 
 
