@@ -1,6 +1,6 @@
 var eyes = require('eyes');
 
-module.exports = function(io){
+module.exports = function(){
 
 	/*
 

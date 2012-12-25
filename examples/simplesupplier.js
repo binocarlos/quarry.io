@@ -26,36 +26,51 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-		warehouse('folder').ship(function(folder){
-
-			console.log('-------------------------------------------');
-			console.log('-------------------------------------------');
-			console.log('folder is loaded');
-			eyes.inspect(folder.toJSON());
-			
-			folder('city[name^=b]').ship(function(cities){
-
+		warehouse('folder city')
+			.debug(function(message){
 				console.log('-------------------------------------------');
 				console.log('-------------------------------------------');
-				console.log('cities is loaded');
-				eyes.inspect(cities.toJSON());
-
-				var area = io.new('area', {
-					name:'Hotwells',
-					population:320
-				}).addClass('rich')
-
-				cities.append(area, function(res){
-					console.log('-------------------------------------------');
-					console.log('-------------------------------------------');
-					console.log('appended');
-					eyes.inspect(res);
-				})
-
-
+				console.log('-------------------------------------------');
+				console.log('transaction debugger');
+				eyes.inspect(message);
+			})
+			.on('error', function(error){
 
 			})
-		})
+			.ship(function(folder){
+				/*
+				console.log('-------------------------------------------');
+				console.log('-------------------------------------------');
+				console.log('folder is loaded');
+				eyes.inspect(folder.toJSON());
+			
+				folder('city[name^=b]')
+					.on('error', function(error){
+
+					})
+					.ship(function(cities){
+
+						console.log('-------------------------------------------');
+						console.log('-------------------------------------------');
+						console.log('cities is loaded');
+						eyes.inspect(cities.toJSON());
+
+						var area = io.new('area', {
+							name:'Hotwells',
+							population:320
+						}).addClass('rich')
+
+						cities.append(area, function(res){
+							console.log('-------------------------------------------');
+							console.log('-------------------------------------------');
+							console.log('appended');
+							eyes.inspect(res);
+						})
+					})
+	*/
+			})
+			
+			
 	})
 	
 	
