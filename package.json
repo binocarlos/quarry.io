@@ -32,7 +32,8 @@
     "socket.io-express": "0.0.1",
     "connect-redis": "~1.4.5",
     "redis": "~0.8.2",
-    "eventemitter2": "~0.4.11"
+    "eventemitter2": "~0.4.11",
+    "console-trace": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "*",

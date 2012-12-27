@@ -10,50 +10,25 @@ io
 })
 .listen(function(network){
 
-	console.log('-------------------------------------------');
-	console.log('-------------------------------------------');
-	console.log('network is ready');
-
 	network.warehouse('dev.jquarry.com', function(warehouse){
 
-		console.log('-------------------------------------------');
-		console.log('-------------------------------------------');
-		console.log('stack is ready');
-
 		warehouse('folder')
-			.debug(function(message){
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('transaction debugger');
-				eyes.inspect(message);
-			})
-			.on('error', function(error){
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('error');
-				eyes.inspect(error);
-			})
-			.each(function(folder){
+
+			.ship(function(folders){
 				
 				console.log('-------------------------------------------');
 				console.log('-------------------------------------------');
 				console.log('folder is loaded');
-				eyes.inspect(folder.toJSON());
+				eyes.inspect(folders.toJSON());
 			
-				folder('city[name^=b]')
-					.on('error', function(error){
-						console.log('-------------------------------------------');
-						console.log('-------------------------------------------');
-						console.log('error');
-						eyes.inspect(error);
-					})
+				folders('city')
+					
 					.ship(function(cities){
 
 						console.log('-------------------------------------------');
 						console.log('-------------------------------------------');
 						console.log('cities is loaded');
-						eyes.inspect(cities.toJSON());
+						eyes.inspect(cities.count());
 
 						/*
 						var area = io.new('area', {
