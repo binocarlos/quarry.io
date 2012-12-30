@@ -7,7 +7,7 @@ check: test
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--reporter $(REPORTER) \
-		--timeout 300 \
+		--timeout 1000 \
 		--require should \
 		--growl \
 		$(TESTS)
