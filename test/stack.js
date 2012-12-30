@@ -12,7 +12,7 @@ describe('stack', function(){
 
 	it('should find things', function(done){
 
-		//console.log = function(){}
+		var old_eyes = eyes.inspect;
 		eyes.inspect = function(){}
 		var old_log = console.log;
 		console.log = function(){}
@@ -50,6 +50,7 @@ describe('stack', function(){
 								cities.count().should.equal(2);
 								cities.eq(0).attr('name').should.equal('Bristol');
 								console.log = old_log;
+								eyes.inspect = old_eyes;
 								done();
 							})
 					})		
@@ -59,7 +60,7 @@ describe('stack', function(){
 
 	it('should branch mid-request', function(done){
 
-		//console.log = function(){}
+		var old_eyes = eyes.inspect;
 		eyes.inspect = function(){}
 		var old_log = console.log;
 		console.log = function(){}
@@ -94,6 +95,7 @@ describe('stack', function(){
 					.ship(function(cities){
 						cities.count().should.equal(10);
 						console.log = old_log;
+						eyes.inspect = old_eyes;
 						done();
 					})
 			})	
@@ -102,7 +104,7 @@ describe('stack', function(){
 
 	it('should append things', function(done){
 
-		//console.log = function(){}
+		var old_eyes = eyes.inspect;
 		eyes.inspect = function(){}
 		var old_log = console.log;
 		console.log = function(){}
@@ -156,6 +158,7 @@ describe('stack', function(){
 									houses.count().should.equal(3);
 									houses.eq(1).attr('name').should.equal('Big House');
 									console.log = old_log;
+									eyes.inspect = old_eyes;
 									done();
 								})
 							})
@@ -175,7 +178,7 @@ describe('stack', function(){
 
 it('should broadcast portals', function(done){
 
-		//console.log = function(){}
+		var old_eyes = eyes.inspect;
 		eyes.inspect = function(){}
 		var old_log = console.log;
 		console.log = function(){}
@@ -239,6 +242,7 @@ it('should broadcast portals', function(done){
 							.ship(function(houses){
 								portalcount.should.equal(3);
 								console.log = old_log;
+								eyes.inspect = old_eyes;
 								done();
 							})
 							
