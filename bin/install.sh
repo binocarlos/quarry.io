@@ -104,7 +104,7 @@ fi
 ##########################################################################################
 # Download and make, install node.js
 
-nodejs_version="0.8.8"
+nodejs_version="0.8.16"
 nodejs_file="node-v$nodejs_version.tar.gz"
 nodejs_url="http://nodejs.org/dist/v$nodejs_version/$nodejs_file"
 
