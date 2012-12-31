@@ -1,55 +1,23 @@
 var io = require('../');
 var eyes = require('eyes');
 
-var config = require('./network.json');
-var folder = config.resources.localfiles;
-var warehouseconfig = {
-	"type":"supplier",
-	"driver":"ram.file",
-	"directory":"/xmlfiles",
-	"format":"xml"
-}
-
 io
-.network('development', require('./network.json'))
-.stack({
-	hostname:'dev.jquarry.com',
-	path:__dirname+'/stack'
+.supplier({
+	"driver":"ram.file",
+	"directory":"/srv/node_modules/quarrylocal/xmlfiles",
+	"path":"cities",
+	"format":"xml"
 })
-.listen(function(network){
+.ready(function(warehouse){
 
-	network.warehouse('dev.jquarry.com', function(warehouse){
-
-		warehouse('area', 'folder city[name^=b]')
-				
-			.ship(function(cities){
-
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('cities is loaded');
-				eyes.inspect(cities.count());
-/*
-				var area = io.new('area', {
-					name:'Hotwells',
-					population:320
-				}).addClass('rich')
-
-				cities.append(area);
-
-				eyes.inspect(cities.toJSON());
-
-				
-				, function(res){
-					console.log('-------------------------------------------');
-					console.log('-------------------------------------------');
-					console.log('appended');
-					eyes.inspect(res);
-				})
-				*/
-			})
+	warehouse('area', 'folder city[name^=b]')
 			
-			
-	})
-	
-	
+		.ship(function(areas){
+
+			console.log('-------------------------------------------');
+			console.log('-------------------------------------------');
+			console.log('areas is loaded');
+			eyes.inspect(areas.count());
+			eyes.inspect(areas.toJSON());
+		})
 })
