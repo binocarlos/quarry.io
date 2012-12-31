@@ -1,30 +1,55 @@
 var io = require('../');
 var eyes = require('eyes');
 
-io.warehouse()
-.use(io.supplier({
-	
-}))
-.ready(function(warehouse){
-	
-	warehouse('fruit caption').ship(function(results){
+var config = require('./network.json');
+var folder = config.resources.localfiles;
+var warehouseconfig = {
+	"type":"supplier",
+	"driver":"ram.file",
+	"directory":"/xmlfiles",
+	"format":"xml"
+}
 
-		console.log('-------------------------------------------');
-		console.log('results');
-		eyes.inspect(results.toJSON());
-	})
-	
-
+io
+.network('development', require('./network.json'))
+.stack({
+	hostname:'dev.jquarry.com',
+	path:__dirname+'/stack'
 })
+.listen(function(network){
 
+	network.warehouse('dev.jquarry.com', function(warehouse){
 
+		warehouse('area', 'folder city[name^=b]')
+				
+			.ship(function(cities){
 
-
+				console.log('-------------------------------------------');
+				console.log('-------------------------------------------');
+				console.log('cities is loaded');
+				eyes.inspect(cities.count());
 /*
-	var supplier = io.supplier('ram.file', {
-		format:'xml',
-		file:__dirname+'/ramfiles/' + path
-	})
-	callback(null, supplier);
+				var area = io.new('area', {
+					name:'Hotwells',
+					population:320
+				}).addClass('rich')
 
-	*/
+				cities.append(area);
+
+				eyes.inspect(cities.toJSON());
+
+				
+				, function(res){
+					console.log('-------------------------------------------');
+					console.log('-------------------------------------------');
+					console.log('appended');
+					eyes.inspect(res);
+				})
+				*/
+			})
+			
+			
+	})
+	
+	
+})

@@ -1,5 +1,5 @@
 {
-	"type":"supplier",
+	"type":"provider",
 	"driver":"ram.file",
 	"format":"json",
 	"pretty":true
