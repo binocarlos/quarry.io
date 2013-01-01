@@ -23,10 +23,15 @@ io
 
 				cities.append(area).ship(function(appended){
 
-					appended.portal(function(){
+					console.log('-------------------------------------------');
+					console.log('-------------------------------------------');
+					eyes.inspect(appended.toJSON());
+
+					appended.portal(function(message){
 						console.log('-------------------------------------------');
 						console.log('-------------------------------------------');
 						console.log('PORTAL MESSAGE');
+						eyes.inspect(message);
 					})
 
 					var house = io.new('house', {
