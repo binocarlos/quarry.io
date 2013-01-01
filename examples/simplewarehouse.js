@@ -18,6 +18,6 @@ io
 			console.log('-------------------------------------------');
 			console.log('areas is loaded');
 			eyes.inspect(areas.count());
-			eyes.inspect(areas.toJSON());
+			
 		})
 })
