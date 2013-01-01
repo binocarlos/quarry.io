@@ -21,10 +21,11 @@ io
 
 			cities.append(area).ship(function(appended){
 
-				console.log('-------------------------------------------');
-				console.log('-------------------------------------------');
-				console.log('original append');
-				eyes.inspect(appended.toJSON());
+				appended.portal(function(){
+					console.log('-------------------------------------------');
+					console.log('-------------------------------------------');
+					console.log('PORTAL MESSAGE');
+				})
 
 				var house = io.new('house', {
 					name:'Big House',

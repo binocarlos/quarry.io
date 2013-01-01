@@ -100,4 +100,77 @@ describe('stack', function(){
 		})
 	})
 
+	it('should append things', function(done){
+
+		//console.log = function(){}
+		eyes.inspect = function(){}
+		var old_log = console.log;
+		console.log = function(){}
+
+		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
+		var livefile = folder + 'cities.xml';
+		var backupfile = folder + 'citiesbranch.xml';
+
+		var content = fs.readFileSync(backupfile, 'utf8');
+		fs.writeFileSync(livefile, content, 'utf8');
+
+		var network_config = {
+			"resources":{
+				"cache":{
+					"driver":"redis",
+					"hostname":"127.0.0.1",
+					"port":6379
+				},
+				"localfiles":__dirname + '/fixtures/tmp'
+			}
+		}
+		
+		io
+		.network('development', network_config)
+		.stack({
+			hostname:'dev.jquarry.com',
+			path:__dirname+'/fixtures/stack'
+		})
+		.listen(function(network){
+			network.warehouse('dev.jquarry.com', function(warehouse){
+
+				warehouse('folder city[name^=b]')
+					
+					.ship(function(cities){
+
+						var area = io.new('area', {
+							name:'Bishopston',
+							population:387
+						}).addClass('rich')
+
+						cities.append(area).ship(function(appended){
+
+							var house = io.new('house', {
+								name:'Big House',
+								population:3
+							}).addClass('grand')
+
+							appended.append(house)
+							.ship(function(houses){
+								warehouse('folder city[name^=b] area[name^=Bish] house').ship(function(houses){
+									houses.count().should.equal(3);
+									houses.eq(1).attr('name').should.equal('Big House');
+									console.log = old_log;
+									done();
+								})
+							})
+							
+							
+							
+						})
+
+
+
+						
+					})
+
+			})	
+		})
+	})
+
 })
