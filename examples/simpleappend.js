@@ -1,10 +1,20 @@
 var io = require('../');
 var eyes = require('eyes');
+var fs = require('fs');
+
+var folder = __dirname + "/localfiles/xmlfiles";
+
+var livefile = folder + '/cities.xml';
+var backupfile = folder + '/citiesnobranch.xml';
+
+var content = fs.readFileSync(backupfile, 'utf8');
+fs.writeFileSync(livefile, content, 'utf8');
+
 
 io
 .supplier({
 	"driver":"ram.file",
-	"directory":"/srv/node_modules/quarrylocal/xmlfiles",
+	"directory":folder,
 	"path":"cities",
 	"format":"xml"
 })

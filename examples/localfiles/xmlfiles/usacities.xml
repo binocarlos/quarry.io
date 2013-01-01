@@ -1,0 +1,13 @@
+<folder id="top" quarryid="4cc975073cf54161af3edc31dff8a123" routes="{}" class="hello">
+	<country quarryid="4cc975073cf54161af3edc31dff8a124" routes="{}" class="big apples" name="USA">
+		<city quarryid="4cc975073cf54161af3edc31dff8a125" routes="{'stamp':'/ram/file/xml/usacities'}" class="south" name="Boston" team="White Sox">
+			<area quarryid="4cc975073cf54161af3edc31dff8a126" routes="{}" class="poor" name="Windy Bay" population="143" />
+			<area quarryid="4d488e6669c58f02f7ffe2233a71d56b" routes="{'stamp':'/ram/file/xml/usacities'}" class="rich" name="Bishopston" population="387">
+				<house quarryid="827fa721f5b6addc7ff8ed571fdafabe" routes="{'stamp':'/ram/file/xml/usacities'}" class="grand" name="Big House" population="3" />
+			</area>
+		</city>
+		<city quarryid="4cc975073cf54161af345631dff8a127" routes="{}" class="south" name="Louisville" team="Bashers">
+			<area quarryid="4cc975073cf54398af3edc31dff8a128" routes="{}" class="poor" name="OakGrove" population="14" />
+		</city>
+	</country>
+</folder>
