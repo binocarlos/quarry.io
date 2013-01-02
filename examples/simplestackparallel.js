@@ -1,15 +1,32 @@
 var io = require('../');
 var eyes = require('eyes');
 var stare = eyes.inspector({maxLength:409600});
+var fs = require('fs');
+
+/*
+
+	this code resets the state of the example each time it is run
+	
+*/
+var folder = __dirname + "/localfiles";
+var network_config = require('./network.json');
+
+network_config.resources.localfiles = folder;
+
+var livefile = folder + '/xmlfiles/cities.xml';
+var backupfile = folder + '/xmlfiles/citiesbranch.xml';
+
+var content = fs.readFileSync(backupfile, 'utf8');
+fs.writeFileSync(livefile, content, 'utf8');
 
 io
-.network('development', require('./network.json'))
+.network('development', network_config)
 .stack({
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack',
 	
 })
-.ready(function(network){
+.listen(function(network){
 
 	console.log('-------------------------------------------');
 	console.log('-------------------------------------------');
