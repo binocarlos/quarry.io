@@ -243,6 +243,65 @@ it('should save things', function(done){
 		})
 	})
 
+it('should delete things', function(done){
+
+		var old_eyes = eyes.inspect;
+		eyes.inspect = function(){}
+		var old_log = console.log;
+		console.log = function(){}
+
+		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
+		var livefile = folder + 'cities.xml';
+		var backupfile = folder + 'citiesbranch.xml';
+
+		var content = fs.readFileSync(backupfile, 'utf8');
+		fs.writeFileSync(livefile, content, 'utf8');
+
+		var network_config = {
+			"resources":{
+				"cache":{
+					"driver":"redis",
+					"hostname":"127.0.0.1",
+					"port":6379
+				},
+				"localfiles":__dirname + '/fixtures/tmp'
+			}
+		}
+		
+		io
+		.network('development', network_config)
+		.stack({
+			hostname:'dev.jquarry.com',
+			path:__dirname+'/fixtures/stack'
+		})
+		.listen(function(network){
+			network.warehouse('dev.jquarry.com', function(warehouse){
+
+				warehouse('folder city[name^=b]')
+					
+					.ship(function(cities){
+
+						cities.count().should.equal(3);
+
+						cities.delete().ship(function(){
+
+							warehouse('folder city[name^=b]')
+
+								.ship(function(cities2){
+									cities2.count().should.equal(0);
+									console.log = old_log;
+									eyes.inspect = old_eyes;
+									done();
+								})
+
+						})
+						
+					})
+
+			})	
+		})
+	})
+
 it('should broadcast portals', function(done){
 
 		var old_eyes = eyes.inspect;
