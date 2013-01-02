@@ -5,6 +5,8 @@
 			<area quarryid="101b5c8eab424621904229637d2dde0d" class="rich" name="Redland" population="79" />
 			<area quarryid="54c7525356d24019956963f538003ef6" class="poor" name="Easton" population="38" />
 			<area quarryid="bf75a73a95dce576a3d35842e465f212" class="rich" name="Hotwells" population="320" />
+			<area quarryid="a640a8423f5550c7932d5f8add8b5916" class="rich" name="Hotwells" population="320" />
+			<area quarryid="077ec77c053fe134bb5bc1ecd1f84cce" class="rich" name="Hotwells" population="320" />
 		</city>
 		<city quarryid="c5b2e1c184c1478da5803a7459a1c7a3" class="south" name="London" team="Arsenal">
 			<area quarryid="dbf397f798c54f91be567b49a2787a3e" class="rich" name="Westminster" population="298" />
@@ -15,7 +17,7 @@
 			<area quarryid="1dd1333a491e442a9944c6a9773ad6a1" class="rich" name="Edgbaston" population="183" />
 		</city>
 		<city quarryid="951941e5dfb140d78dd3e91351e54031" class="midlands" name="Nottingham" team="Nottingham Forest">
-			<area quarryid="17d3a7c403fb429a9faecb3c443d4c6d" class="rich" name="Trent" population="183" />
+			<area quarryid="17d3a7c403fb429a9faecb3c443d4c6d" class="rich" name="Edgbaston" population="183" />
 		</city>
 		<city quarryid="5adc02f47f5649c199b63876baf408b5" class="north" name="Liverpool" team="Everton">
 			<area quarryid="7c853daeaf074c71975ae222e4898ecb" class="poor" name="Everton" population="89" />
@@ -34,4 +36,7 @@
 		</city>
 	</country>
 </folder>
-<folder id="usalink" quarryid="2920402675aa4388948f71fe0892648b" class="usa" routes="{'post':'/ram/file/xml/usacities/'}" />
+<folder id="usalink" quarryid="2920402675aa4388948f71fe0892648b" class="usa" routes="{'post':'/ram/file/xml/usacities/'}">
+</folder>
+<folder id="quarrylink" quarryid="2920402675297488948f71fe0892648b" class="france" routes="{'post':'/database/quarry/francecities/'}">
+</folder>
