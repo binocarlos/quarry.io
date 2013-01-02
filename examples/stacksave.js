@@ -38,11 +38,17 @@ io
 					'food':'apples'
 				}).addClass('saved');
 
-				cities.save().ship(function(results){
+				cities.save()
+				.on('error', function(res){
+					console.log('error');
+					eyes.inspect(res.toJSON());
+				})
+				.ship(function(results){
 					console.log('-------------------------------------------');
 					console.log('after save');
 					eyes.inspect(results);
 				})
+
 
 				
 
