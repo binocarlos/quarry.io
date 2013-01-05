@@ -15,11 +15,17 @@ describe('warehouse', function(){
 		var old_log = console.log;
 		console.log = function(){}
 
+		var folder = __dirname + '/fixtures/warehouse';
+		var livefile = folder + '/cities.xml';
+		var backupfile = folder + '/cities_template.xml';
+
+		var content = fs.readFileSync(backupfile, 'utf8');
+		fs.writeFileSync(livefile, content, 'utf8');
 
 		var supplier_config = {
 			"driver":"ram.file",
-			"directory":__dirname+'/fixtures/tmp/xmlfiles',
-			"path":"citieswarehouse",
+			"directory":folder,
+			"path":"cities",
 			"format":"xml"
 		}
 
@@ -49,16 +55,16 @@ describe('warehouse', function(){
 		var old_log = console.log;
 		console.log = function(){}
 
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'citieswarehouse.xml';
-		var backupfile = folder + 'citieswarehouse2.xml';
+		var folder = __dirname + '/fixtures/warehouse';
+		var livefile = folder + '/cities.xml';
+		var backupfile = folder + '/cities_template.xml';
 
 		var content = fs.readFileSync(backupfile, 'utf8');
 		fs.writeFileSync(livefile, content, 'utf8');
 
 		var supplier_config = {
 			"driver":"ram.file",
-			"directory":__dirname + "/fixtures/tmp/xmlfiles",
+			"directory":folder,
 			"path":"cities",
 			"format":"xml"
 		}
@@ -78,23 +84,12 @@ describe('warehouse', function(){
 
 					cities.append(area).ship(function(appended){
 
-						console.log('-------------------------------------------');
-						console.log('-------------------------------------------');
-						console.log('original append');
-						eyes.inspect(appended.toJSON());
-
 						var house = io.new('house', {
 							name:'Big House',
 							population:3
 						}).addClass('grand')
 
 						appended.append(house)
-						.on('error', function(error){
-							console.log('-------------------------------------------');
-							console.log('error');
-							eyes.inspect(error.toJSON());
-							console.log('-------------------------------------------');
-						})
 						.ship(function(houses){
 
 							warehouse('folder city[name^=b] area[name^=Bish] house').ship(function(houses){

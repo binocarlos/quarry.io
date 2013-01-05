@@ -31,7 +31,7 @@ function run_example(){
 		path:__dirname+'/stack',
 		
 	})
-	.listen(function(network){
+	.boot(function(network){
 
 		console.log('-------------------------------------------');
 		console.log('-------------------------------------------');

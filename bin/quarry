@@ -1,44 +1,64 @@
 #!/usr/bin/env node
-var shell = require('shell');
 
-var app = new shell();
+/**
+ * Module dependencies.
+ */
 
-app.configure(function(){
-    app.use(shell.router({
-        shell: app
-    }));
-});
+var program = require('commander');
+var async = require('async');
+var eyes = require('eyes');
+var colors = require('colors');
+var version = require('../package.json').version;
+var io = require('../');
 
-// Route middleware
-var auth = function(req, res, next){
-    if(req.params.uid == process.getuid()){
-        next()
-    }else{
-        throw new Error('Not me');
+
+tools.banner('quarry.io ' + version);
+
+program
+  .version(version)
+  .option('-m, --mode <development|local|cloud>', 'the style of network to run', './')
+  .option('-n, --network <folder>', 'the location of the network folder', './')
+
+program
+  .command('start')
+  .description('start a quarry network')
+  .action(function(){
+
+
+    var stack = stackFactory(program.trim, config);
+
+    function boot(){
+      stack.start(function(){
+        tools.logevent('stack started');
+      })
     }
-}
 
-// Global parameter substitution
-app.param('uid', function(req, res, next){
-    exec('whoami', function(err, stdout, sdterr){
-        req.params.username = stdout;
-        next();
-    });
-});
+    /*
 
-// Simple command
-app.cmd('help', function(req, res){
-    res.cyan('Run this command `./ami user ' + process.getuid() + '`');
-    res.prompt()
-});
+      we build the code if we are running in production mode
 
-// Command with parameter
-app.cmd('user :uid', auth, function(req, res){
-    res.cyan('Yes, you are ' + req.params.username);
-});
+     */
+     
+    if(stack.production()){
+      buildtool(boot);
+    }
+    else{
+      boot();
+    }
 
-// Command with contrained parameter
-app.cmd('user :id([0-9]+)', function(req, res) {
-   res.cyan('User id is ' + req.params.id);
-   res.prompt();
-});
+  })
+
+program
+  .command('stop')
+  .description('stop the linux stack')
+  .action(function(env){
+    tools.logevent('STOP');
+  })
+
+program
+  .command('*')
+  .action(function(command){
+    console.log('command: "%s" not found', command);
+  })
+
+program.parse(process.argv);

@@ -24,7 +24,7 @@ describe('stack', function(){
 		var old_log = console.log;
 		console.log = function(){}
 
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
+		var folder = __dirname + '/fixtures/networks/basic/resources/files/xmlfiles/';
 		var livefile = folder + 'cities.xml';
 		var backupfile = folder + backupfile;//'cities2.xml';
 
@@ -37,17 +37,6 @@ describe('stack', function(){
 		var content2 = fs.readFileSync(backupfile2, 'utf8');
 		fs.writeFileSync(livefile2, content2, 'utf8');
 
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
 		async.series([
       function(next){
       	mongo({
@@ -59,12 +48,10 @@ describe('stack', function(){
 
       function(next){
       	io
-					.network('development', network_config)
-					.stack({
-						hostname:'dev.jquarry.com',
-						path:__dirname+'/fixtures/stack'
+					.network('development', {
+						folder:__dirname+'/fixtures/networks/basic'
 					})
-					.listen(function(network){
+					.boot(function(network){
 						network.warehouse('dev.jquarry.com', function(warehouse){
 
 							testfn(warehouse, next);
