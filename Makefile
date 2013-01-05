@@ -12,6 +12,15 @@ test:
 		--growl \
 		$(TESTS)
 
+devtest:
+	@NODE_ENV=test ./node_modules/.bin/mocha \
+		--reporter $(REPORTER) \
+		--timeout 1000 \
+		--require should \
+		--growl \
+		--bail \
+		test/stack.js
+
 build:
 	#browserify -o lib/container.browser.built.js lib/container.browser.js
 
