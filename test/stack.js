@@ -1,10 +1,84 @@
 var io = require('../');
 var fs = require('fs');
 var eyes = require('eyes');
+var mongo = require('../lib/vendor/server/mongo');
+var async = require('async');
 
 describe('stack', function(){
 
 	this.timeout(1000);
+
+	/*
+	
+		setups up the stack fresh each time so we have a new starting point for each test
+		
+	*/
+	function stacktest(config){
+
+		var backupfile = config.backupfile;
+		var testfn = config.testfn;
+		var done = config.done;
+
+		var old_eyes = eyes.inspect;
+		eyes.inspect = function(){}
+		var old_log = console.log;
+		console.log = function(){}
+
+		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
+		var livefile = folder + 'cities.xml';
+		var backupfile = folder + backupfile;//'cities2.xml';
+
+		var livefile2 = folder + 'usacities.xml';
+		var backupfile2 = folder + 'usacities2.xml';
+
+		var content = fs.readFileSync(backupfile, 'utf8');
+		fs.writeFileSync(livefile, content, 'utf8');
+
+		var content2 = fs.readFileSync(backupfile2, 'utf8');
+		fs.writeFileSync(livefile2, content2, 'utf8');
+
+		var network_config = {
+			"resources":{
+				"cache":{
+					"driver":"redis",
+					"hostname":"127.0.0.1",
+					"port":6379
+				},
+				"localfiles":__dirname + '/fixtures/tmp'
+			}
+		}
+		
+		async.series([
+      function(next){
+      	mongo({
+          collection:'francecities'
+        }, function(error, client){
+          client.collection.drop(next);
+        })
+      },
+
+      function(next){
+      	io
+					.network('development', network_config)
+					.stack({
+						hostname:'dev.jquarry.com',
+						path:__dirname+'/fixtures/stack'
+					})
+					.listen(function(network){
+						network.warehouse('dev.jquarry.com', function(warehouse){
+
+							testfn(warehouse, next);
+
+						})
+					})
+      }
+    ], function(){
+    	console.log = old_log;
+			eyes.inspect = old_eyes;
+			done();
+    })
+
+	}
 
 	it('should be a function', function () {
 		io.stack.should.be.a('function');
@@ -12,129 +86,44 @@ describe('stack', function(){
 
 	it('should find things', function(done){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
-
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'cities2.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
-		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
+		stacktest({
+			backupfile:'cities2.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 				warehouse('folder')
 					.ship(function(folder){
 						folder('city[name^=b]')
 							.ship(function(cities){
 								cities.count().should.equal(2);
 								cities.eq(0).attr('name').should.equal('Bristol');
-								console.log = old_log;
-								eyes.inspect = old_eyes;
-								done();
+								callback();
 							})
-					})		
-			})			
+					})
+			}
 		})
 	})
 
 	it('should branch mid-request', function(done){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
-
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'citiesbranch.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
-		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
+		stacktest({
+			backupfile:'citiesbranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 				warehouse('folder city')
 					.ship(function(cities){
 						cities.count().should.equal(10);
-						console.log = old_log;
-						eyes.inspect = old_eyes;
-						done();
+						callback();
 					})
-			})	
+			}
 		})
 	})
 
 	it('should append things', function(done){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
-
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'citiesbranch.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
-		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
+		stacktest({
+			backupfile:'citiesbranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 
 				warehouse('folder city[name^=b]')
 					
@@ -157,59 +146,21 @@ describe('stack', function(){
 								warehouse('folder city[name^=b] area[name^=Bish] house').ship(function(houses){
 									houses.count().should.equal(3);
 									houses.eq(1).attr('name').should.equal('Big House');
-									console.log = old_log;
-									eyes.inspect = old_eyes;
-									done();
+									callback();
 								})
 							})
-							
-							
-							
 						})
-
-
-
-						
 					})
-
-			})	
+			}
 		})
 	})
 
-it('should save things', function(done){
+	it('should save things', function(done){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
-
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'citiesbranch.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
-		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
-
+		stacktest({
+			backupfile:'citiesbranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 				warehouse('folder city[name^=b]')
 					
 					.ship(function(cities){
@@ -225,58 +176,20 @@ it('should save things', function(done){
 								.ship(function(cities2){
 									cities2.attr('food').should.equal('Ice Cream');
 									cities2.hasClass('chocolate').should.equal(true);
-									console.log = old_log;
-									eyes.inspect = old_eyes;
-									done();
+									callback();
 								})
-							
-							
-							
 						})
-
-
-
-						
 					})
-
-			})	
+			}
 		})
 	})
 
-it('should delete things', function(done){
+	it('should delete things', function(done){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
-
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'citiesbranch.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
-			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
-		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
-
+		stacktest({
+			backupfile:'citiesbranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 				warehouse('folder city[name^=b]')
 					
 					.ship(function(cities){
@@ -289,58 +202,51 @@ it('should delete things', function(done){
 
 								.ship(function(cities2){
 									cities2.count().should.equal(0);
-									console.log = old_log;
-									eyes.inspect = old_eyes;
-									done();
+									callback();
 								})
 
 						})
 						
 					})
-
-			})	
+			}
 		})
 	})
 
-it('should broadcast portals', function(done){
+	it('should pour into QuarryDB', function(done){
+		stacktest({
+			backupfile:'citiesquarrybranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
+				warehouse('folder').ship(function(folders){
 
-		var old_eyes = eyes.inspect;
-		eyes.inspect = function(){}
-		var old_log = console.log;
-		console.log = function(){}
+					folders.find('#places')
+						.select('city:tree')
+						.ship(function(cities){
 
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'citiesbranch.xml';
+							folders.find('#quarrylink')
+								.append(cities)
+								.ship(function(appended){
+									
+									warehouse('#quarrylink area').ship(function(quarryareas){
 
-		var livefile2 = folder + 'usacities.xml';
-		var backupfile2 = folder + 'usacities2.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
-
-		var content2 = fs.readFileSync(backupfile2, 'utf8');
-		fs.writeFileSync(livefile2, content2, 'utf8');
-
-		var network_config = {
-			"resources":{
-				"cache":{
-					"driver":"redis",
-					"hostname":"127.0.0.1",
-					"port":6379
-				},
-				"localfiles":__dirname + '/fixtures/tmp'
+										quarryareas.count().should.equal(16);
+										callback();
+									})
+								})
+							
+						})
+					
+				})
 			}
-		}
-		
-		io
-		.network('development', network_config)
-		.stack({
-			hostname:'dev.jquarry.com',
-			path:__dirname+'/fixtures/stack'
 		})
-		.listen(function(network){
-			network.warehouse('dev.jquarry.com', function(warehouse){
+	})
+
+	it('should broadcast portals', function(done){
+
+		stacktest({
+			backupfile:'citiesbranch.xml',
+			done:done,
+			testfn:function(warehouse, callback){
 
 				warehouse('folder city[name^=b]')
 			
@@ -367,21 +273,11 @@ it('should broadcast portals', function(done){
 							appended.append(house)
 							.ship(function(houses){
 								portalcount.should.equal(3);
-								console.log = old_log;
-								eyes.inspect = old_eyes;
-								done();
+								callback();
 							})
-							
-							
-							
 						})
-
-
-
-						
 					})
-
-			})	
+			}
 		})
 	})
 
