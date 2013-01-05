@@ -14,7 +14,7 @@ var content = fs.readFileSync(backupfile, 'utf8');
 fs.writeFileSync(livefile, content, 'utf8');
 
 io
-.network('development', network_config)
+.network('local', network_config)
 .stack({
 	hostname:'dev.jquarry.com',
 	path:__dirname+'/stack',
@@ -32,17 +32,12 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-		warehouse('folder#quarrylink food').ship(function(food){
-
+		warehouse('folder city[name^=b]').ship(function(cities, errors){
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
-			console.log('loaded food');
-			
-			food.delete().ship(function(messages){
-				console.log('-------------------------------------------');
-				console.log('food deleted');
-				eyes.inspect(messages);
-			})
+			console.log('cities is loaded');
+			eyes.inspect(cities.toJSON());
+			//eyes.inspect(errors);
 			
 		})
 	})

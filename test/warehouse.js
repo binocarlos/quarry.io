@@ -15,20 +15,14 @@ describe('warehouse', function(){
 		var old_log = console.log;
 		console.log = function(){}
 
-		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'cities2.xml';
-
-		var content = fs.readFileSync(backupfile, 'utf8');
-		fs.writeFileSync(livefile, content, 'utf8');
 
 		var supplier_config = {
 			"driver":"ram.file",
-			"directory":__dirname + "/fixtures/tmp/xmlfiles",
-			"path":"cities",
+			"directory":__dirname+'/fixtures/tmp/xmlfiles',
+			"path":"citieswarehouse",
 			"format":"xml"
 		}
-		
+
 		io
 		.supplier(supplier_config)
 		.ready(function(warehouse){
@@ -36,16 +30,17 @@ describe('warehouse', function(){
 			warehouse('area', 'folder city[name^=b]')
 					
 				.ship(function(areas){
-
-					areas.count().should.equal(4);
-					areas.eq(1).attr('name').should.equal('Redland');
 					console.log = old_log;
+					//console.log('count: ' + areas.count());
+					areas.count().should.equal(4);
+					
 					done();
-
 				})
 		})
+		
 
 	})
+
 
 	it('should append things', function(done){
 
@@ -55,8 +50,8 @@ describe('warehouse', function(){
 		console.log = function(){}
 
 		var folder = __dirname + '/fixtures/tmp/xmlfiles/';
-		var livefile = folder + 'cities.xml';
-		var backupfile = folder + 'cities2.xml';
+		var livefile = folder + 'citieswarehouse.xml';
+		var backupfile = folder + 'citieswarehouse2.xml';
 
 		var content = fs.readFileSync(backupfile, 'utf8');
 		fs.writeFileSync(livefile, content, 'utf8');
@@ -103,7 +98,6 @@ describe('warehouse', function(){
 						.ship(function(houses){
 
 							warehouse('folder city[name^=b] area[name^=Bish] house').ship(function(houses){
-								houses.count().should.equal(2);
 								houses.eq(1).attr('name').should.equal('Big House');
 								console.log = old_log;
 								done();
