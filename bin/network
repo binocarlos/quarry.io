@@ -43,6 +43,11 @@ program
 
     var network_config = require(folder+'/network.json');
 
+    if(network_config.type=='development'){
+      utils.logerror('development networks are for test purposes');
+      process.exit(); 
+    }
+
     network_config.folder = folder;
 
     utils.logevent('loading network config (' + network_config.type + '): ' + folder+'/network.json')
@@ -50,6 +55,10 @@ program
     io.network(network_config.type, network_config)
       .on('message', function(message){
         utils.logger(message);
+      })
+      .on('error', function(message, exit){
+        utils.logerror(error);
+        exit && process.exit();
       })
       .boot(function(network){
         utils.logevent('network is booted');

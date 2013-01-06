@@ -2,8 +2,8 @@
 	<country quarryid="4cc975073cf54161af3edc31dff8afd9" routes="{}" class="big apples" name="USA">
 		<city quarryid="4cc975073cf54161af3edc31dff8afd8" routes="{'stamp':'/ram/file/xml/usacities'}" class="south" name="Boston" team="White Sox">
 			<area quarryid="4cc975073cf54161af3edc31dff8afd5" routes="{}" class="poor" name="Windy Bay" population="143" />
-			<area quarryid="fb984a48a1ac4bacecc9a6eb979d9968" routes="{'stamp':'/ram/file/xml/usacities'}" class="rich" name="Bishopston" population="387">
-				<house quarryid="6c39f9a66e8e4be051e007ffb76686e0" routes="{'stamp':'/ram/file/xml/usacities'}" class="grand" name="Big House" population="3" />
+			<area quarryid="b6862db09b7eff9d3c97e6a66594d066" routes="{'stamp':'/ram/file/xml/usacities'}" class="rich" name="Bishopston" population="387">
+				<house quarryid="01ed2bd057db3d0987689d2e65bab81a" routes="{'stamp':'/ram/file/xml/usacities'}" class="grand" name="Big House" population="3" />
 			</area>
 		</city>
 		<city quarryid="4cc975073cf54161af345631dff8afd8" routes="{}" class="south" name="Louisville" team="Bashers">

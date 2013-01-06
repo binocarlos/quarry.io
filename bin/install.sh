@@ -86,6 +86,20 @@ zeromq_version="3.2.0"
 zeromq_file="zeromq-$zeromq_version-rc1.tar.gz"
 zeromq_url="http://download.zeromq.org/$zeromq_file"
 
+
+
+if [ ! -d "$sources_folder/mon" ]; then
+
+	(mkdir "$sources_folder/mon" && cd "$sources_folder/mon" && curl -L# https://github.com/visionmedia/mon/archive/master.tar.gz | tar zx --strip 1 && make install)
+
+fi
+
+if [ ! -d "$sources_folder/mongroup" ]; then
+
+	(mkdir "$sources_folder/mongroup" && cd "$sources_folder/mongroup" && curl -L# https://github.com/jgallen23/mongroup/archive/master.tar.gz | tar zx --strip 1 && make install)
+
+fi
+
 # Only install ZeroMQ if it is not already installed
 if [ ! -d "$sources_folder/zeromq-$zeromq_version" ]; then
 	cd $sources_folder
