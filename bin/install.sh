@@ -144,6 +144,7 @@ if [ ! -d "$quarryio_home/node_modules" ]; then
 	installlog "installing node modules"
 	cd $quarryio_home
 	npm install
+	ldconfig
 fi
 
 exit

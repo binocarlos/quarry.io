@@ -56,7 +56,7 @@ describe('stack', function(){
 					.network('development', {
 						folder:__dirname+'/fixtures/networks/basic'
 					})
-					.boot(function(network){
+					.start(function(network){
 						network.warehouse('dev.jquarry.com', function(warehouse){
 
 							testfn(warehouse, next);

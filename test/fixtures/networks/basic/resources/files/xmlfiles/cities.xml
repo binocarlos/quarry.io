@@ -1,26 +1,9 @@
 <folder id="places" quarryid="4cc975073cf54161af3edc31dff8afd1" routes="{}" class="hello">
 	<country quarryid="533d6a74f1614b6386fd801ff42aa14c" routes="{}" class="big apples" name="UK">
-		<city quarryid="20b935e7d1bc4f2ab40bee893f1f39cc" routes="{'stamp':'/ram/file/xml/cities'}" class="south" name="Bristol" team="Bristol City">
-			<area quarryid="2b7fd597871d436fa7031e1ebfb79837" routes="{}" class="poor" name="St. Pauls" population="103" />
-			<area quarryid="101b5c8eab424621904229637d2dde0d" routes="{}" class="rich" name="Redland" population="79" />
-			<area quarryid="54c7525356d24019956963f538003ef6" routes="{}" class="poor" name="Easton" population="38" />
-			<area quarryid="bf75a73a95dce576a3d35842e465f212" routes="{}" class="rich" name="Hotwells" population="320" />
-			<area quarryid="a640a8423f5550c7932d5f8add8b5916" routes="{}" class="rich" name="Hotwells" population="320" />
-			<area quarryid="077ec77c053fe134bb5bc1ecd1f84cce" routes="{}" class="rich" name="Hotwells" population="320" />
-			<area quarryid="3283ec804f48b2c60154b106128467bf" routes="{'stamp':'/ram/file/xml/cities'}" class="rich" name="Bishopston" population="387">
-				<house quarryid="71b739fcc8e3ffeb5df54859364cef3a" routes="{'stamp':'/ram/file/xml/cities'}" class="grand" name="Big House" population="3" />
-			</area>
-		</city>
 		<city quarryid="c5b2e1c184c1478da5803a7459a1c7a3" routes="{}" class="south" name="London" team="Arsenal">
 			<area quarryid="dbf397f798c54f91be567b49a2787a3e" routes="{}" class="rich" name="Westminster" population="298" />
 			<area quarryid="7e9077880fda448b8d98a0e16ba1aeb5" routes="{}" class="rich" name="Ealing" population="98" />
 			<area quarryid="8869cbdadcd04d6d804974322601f0c2" routes="{}" class="poor" name="Woolwich" population="68" />
-		</city>
-		<city quarryid="489fd84af5124561af7202fa21f91423" routes="{'stamp':'/ram/file/xml/cities'}" class="midlands" name="Birmingham" team="Ason Villa">
-			<area quarryid="1dd1333a491e442a9944c6a9773ad6a1" routes="{}" class="rich" name="Edgbaston" population="183" />
-			<area quarryid="e1c7c1212a70e6b39f89ffd371d45187" routes="{'stamp':'/ram/file/xml/cities'}" class="rich" name="Bishopston" population="387">
-				<house quarryid="e683df029e44833371c20061c701e226" routes="{'stamp':'/ram/file/xml/cities'}" class="grand" name="Big House" population="3" />
-			</area>
 		</city>
 		<city quarryid="951941e5dfb140d78dd3e91351e54031" routes="{}" class="midlands" name="Nottingham" team="Nottingham Forest">
 			<area quarryid="17d3a7c403fb429a9faecb3c443d4c6d" routes="{}" class="rich" name="Edgbaston" population="183" />
@@ -43,6 +26,6 @@
 	</country>
 </folder>
 
-<undefined quarryid="8a5b9b" routes="{}" />
+<undefined quarryid="2722dd" routes="{}" />
 
 <folder id="usalink" quarryid="2920402675aa4388948f71fe0892648b" routes="{'post':'/ram/file/xml/usacities/'}" class="usa" />
