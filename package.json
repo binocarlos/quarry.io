@@ -34,7 +34,9 @@
     "redis": "~0.8.2",
     "eventemitter2": "~0.4.11",
     "console-trace": "~0.2.1",
-    "mocha": "~1.7.4"
+    "mocha": "~1.7.4",
+    "commander": "~1.1.1",
+    "colors": "~0.6.0-1"
   },
   "devDependencies": {
     "mocha": "*",

@@ -2,23 +2,9 @@ var io = require('../');
 var eyes = require('eyes');
 var fs = require('fs');
 
-var folder = __dirname + "/localfiles";
-var network_config = require('./network.json');
-
-network_config.resources.localfiles = folder;
-
-var livefile = folder + '/xmlfiles/cities.xml';
-var backupfile = folder + '/xmlfiles/citiesbranch.xml';
-
-var content = fs.readFileSync(backupfile, 'utf8');
-fs.writeFileSync(livefile, content, 'utf8');
-
 io
-.network('local', network_config)
-.stack({
-	hostname:'dev.jquarry.com',
-	path:__dirname+'/stack',
-	
+.network('development', {
+	folder:__dirname+'/networks/basic'
 })
 .boot(function(network){
 

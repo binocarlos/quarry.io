@@ -1,0 +1,72 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander');
+var async = require('async');
+var eyes = require('eyes');
+var colors = require('colors');
+var version = require('../package.json').version;
+var io = require('../');
+var utils = require('../lib/server/utils');
+var fs = require('fs');
+var _ = require('underscore');
+
+utils.banner('quarry.io network ' + version);
+
+program
+  .version(version)
+  .option('-d, --dir <folder>', 'the location of the network folder', './')
+
+program
+  .command('start')
+  .description('start a quarry network')
+  .action(function(env){
+
+    var folder = _.isEmpty(program.dir) || program.dir=='./' ? process.cwd() : program.dir;
+
+    folder = folder.replace(/^\.\//, process.cwd() + '/');
+
+    utils.logevent('starting network: ' + folder);
+
+    /*
+    
+      check for a network.json to make sense of our base folder
+      
+    */
+    if(!fs.existsSync(folder+'/network.json')){
+      utils.logerror('file: ' + folder + '/network.json not found!');
+      process.exit();
+    }
+
+    var network_config = require(folder+'/network.json');
+
+    network_config.folder = folder;
+
+    utils.logevent('loading network config (' + network_config.type + '): ' + folder+'/network.json')
+
+    io.network(network_config.type, network_config)
+      .on('message', function(message){
+        utils.logger(message);
+      })
+      .boot(function(network){
+        utils.logevent('network is booted');
+      })
+  })
+
+program
+  .command('stop')
+  .description('stop a quarry network')
+  .action(function(env){
+    
+  })
+
+program
+  .command('*')
+  .action(function(command){
+    console.log('command: "%s" not found', command);
+  })
+
+program.parse(process.argv);
