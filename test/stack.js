@@ -6,7 +6,7 @@ var async = require('async');
 
 describe('stack', function(){
 
-	this.timeout(1000);
+	this.timeout(2000);
 
 	/*
 	
@@ -14,6 +14,8 @@ describe('stack', function(){
 		
 	*/
 	function stacktest(config){
+
+		console.log('');
 
 		var backupfile = config.backupfile;
 		var testfn = config.testfn;
@@ -34,8 +36,11 @@ describe('stack', function(){
 		var content = fs.readFileSync(backupfile, 'utf8');
 		fs.writeFileSync(livefile, content, 'utf8');
 
+		old_log('created', livefile, 'from', backupfile);
+
 		var content2 = fs.readFileSync(backupfile2, 'utf8');
 		fs.writeFileSync(livefile2, content2, 'utf8');
+		old_log('created', livefile2, 'from', backupfile2);
 
 		async.series([
       function(next){
@@ -61,12 +66,12 @@ describe('stack', function(){
       }
     ], function(){
     	console.log = old_log;
-			eyes.inspect = old_eyes;
-			done();
+		eyes.inspect = old_eyes;
+		done();
     })
 
 	}
-
+/*
 	it('should be a function', function () {
 		io.stack.should.be.a('function');
 	})
@@ -83,6 +88,7 @@ describe('stack', function(){
 							.ship(function(cities){
 								cities.count().should.equal(2);
 								cities.eq(0).attr('name').should.equal('Bristol');
+								cities.eq(1).attr('name').should.equal('Birmingham');
 								callback();
 							})
 					})
@@ -104,7 +110,7 @@ describe('stack', function(){
 			}
 		})
 	})
-
+*/
 	it('should append things', function(done){
 
 		stacktest({
@@ -200,6 +206,7 @@ describe('stack', function(){
 	})
 
 	it('should pour into QuarryDB', function(done){
+		var clog = console.log;
 		stacktest({
 			backupfile:'citiesquarrybranch.xml',
 			done:done,
@@ -216,6 +223,9 @@ describe('stack', function(){
 									
 									warehouse('#quarrylink area').ship(function(quarryareas){
 
+										quarryareas.each(function(area){
+											clog('area =', area.attr('name'));
+										});
 										quarryareas.count().should.equal(16);
 										callback();
 									})
@@ -227,7 +237,7 @@ describe('stack', function(){
 			}
 		})
 	})
-
+/*
 	it('should broadcast portals', function(done){
 
 		stacktest({
@@ -267,5 +277,5 @@ describe('stack', function(){
 			}
 		})
 	})
-
+*/
 })
