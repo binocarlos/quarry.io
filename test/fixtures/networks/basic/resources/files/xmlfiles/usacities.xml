@@ -1,7 +1,0 @@
-<folder id="top" quarryid="4cc975073cf54161af3edc31dff8afd7" routes="{}" class="hello">
-	<country quarryid="4cc975073cf54161af3edc31dff8afd9" routes="{}" class="big apples" name="USA">
-		<city quarryid="4cc975073cf54161af345631dff8afd8" routes="{}" class="south" name="Louisville" team="Bashers">
-			<area quarryid="4cc975073cf54398af3edc31dff8afd5" routes="{}" class="poor" name="OakGrove" population="14" />
-		</city>
-	</country>
-</folder>

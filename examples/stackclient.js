@@ -6,9 +6,8 @@ io
 .network('development', {
 	folder:__dirname+'/networks/basic'
 })
-.boot(function(network){
+.connect(function(network){
 
-	/*
 	console.log('-------------------------------------------');
 	console.log('-------------------------------------------');
 	console.log('network is ready');
@@ -28,6 +27,6 @@ io
 			
 		})
 	})
-	*/
+
 	
 })

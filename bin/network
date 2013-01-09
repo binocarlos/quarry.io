@@ -14,12 +14,22 @@ var utils = require('../lib/server/utils');
 var fs = require('fs');
 var _ = require('underscore');
 
+var network_modes = {
+  development:true,
+  local:true
+}
+
 function build_network(){
   var folder = _.isEmpty(program.dir) || program.dir=='./' ? process.cwd() : program.dir;
 
   folder = folder.replace(/^\.\//, process.cwd() + '/');
 
   utils.logevent('network: ' + folder);
+
+  if(!network_modes[program.mode]){
+    utils.logerror('mode: ' + program.mode + ' not found');
+    process.exit();
+  }
 
   /*
   
@@ -31,14 +41,17 @@ function build_network(){
     process.exit();
   }
 
-  var network_config = require(folder+'/network.json');
+  var network_config = {};//require(folder+'/network.json');
 
-  if(network_config.type=='development'){
-    utils.logerror('development networks are for test purposes');
-    process.exit(); 
-  }
+  network_config.type = program.mode;
 
   network_config.folder = folder;
+  network_config.super_ports = {
+    http:program.http_proxy,
+    rpc:program.rpc_proxy,
+    pub:program.pub_proxy,
+    sub:program.sub_proxy
+  }
 
   utils.logevent('loading network config (' + network_config.type + '): ' + folder+'/network.json')
 
@@ -58,7 +71,12 @@ utils.banner('quarry.io network ' + version);
 
 program
   .version(version)
-  .option('-t, --tail', 'start tailing the logs after starting', 'yes')
+  .option('-m, --mode <development|local|cloud>', 'what mode to run this network in', 'development')
+  .option('-a, --autotail', 'start tailing the logs after starting (local network only)', 'no')
+  .option('-h, --http_proxy <port>', 'Port number for the HTTP Proxy', '80')
+  .option('-r, --rpc_proxy <port>', 'Port number for the RPC Proxy', '20900')
+  .option('-p, --pub_proxy <port>', 'Port number for the PUB Proxy', '20910')
+  .option('-s, --sub_proxy <port>', 'Port number for the SUB Proxy', '20920')
   .option('-d, --dir <folder>', 'the location of the network folder', './')
 
 program
@@ -78,7 +96,7 @@ program
       network.start(function(network){
         utils.logevent('network is started');
 
-        if(program.tail){
+        if(program.autotail){
           network.debug();
         }
       })
@@ -109,6 +127,10 @@ program
       network.ensure_folders(function(){
         network.start(function(){
           utils.logevent('network is started');
+
+          if(program.autotail){
+            network.debug();
+          }
         })
       })
     })
