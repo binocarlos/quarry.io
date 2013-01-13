@@ -18,17 +18,31 @@ io
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
 
-		setTimeout(function(){
-			warehouse('folder city[name^=b]').ship(function(cities, errors){
+		warehouse('folder city[name^=b]').ship(function(cities, errors){
+			console.log('-------------------------------------------');
+			console.log('-------------------------------------------');
+			console.log('cities is loaded');
+			eyes.inspect(cities.toJSON());
+
+			var area = io.new('area', {
+				name:'Brislington',
+				flavour:'apple'
+			})
+
+			cities.portal(function(message){
 				console.log('-------------------------------------------');
 				console.log('-------------------------------------------');
-				console.log('cities is loaded');
-				eyes.inspect(cities.toJSON());
-				//eyes.inspect(errors);
-				
-			})	
-		}, 500);
-		
+				console.log('portal!!!');
+				eyes.inspect(message);
+			})
+
+			cities.append(area).ship(function(){
+				console.log('-------------------------------------------');
+				console.log('cities appended');
+			})
+			//eyes.inspect(errors);
+			
+		})
 	})
 
 	

@@ -140,11 +140,11 @@ fi
 ##########################################################################################
 # Install node.js modules from NPM - this reads ../package.json for dependencies
 # The ZeroMQ npm is different - ask the Administrator
-if [ ! -d "$quarryio_home/node_modules" ]; then
-	installlog "installing node modules"
-	cd $quarryio_home
-	npm install
-	ldconfig
-fi
+
+installlog "installing node modules"
+cd $quarryio_home
+npm install
+ldconfig
+
 
 exit
