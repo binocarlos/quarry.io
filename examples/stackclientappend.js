@@ -3,7 +3,7 @@ var eyes = require('eyes');
 var fs = require('fs');
 
 io
-.network('development', {
+.network('local', {
 	folder:__dirname+'/networks/basic'
 })
 .connect(function(network){

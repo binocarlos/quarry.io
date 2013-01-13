@@ -1,7 +1,0 @@
-{
-	"type":"provider",
-	"driver":"ram.file",
-	"format":"json",
-	"directory":"/xmlfiles",
-	"pretty":true
-}
