@@ -3,7 +3,7 @@ var eyes = require('eyes');
 var fs = require('fs');
 
 io
-.network('development', {
+.network('local', {
 	folder:__dirname+'/networks/basic'
 })
 .connect(function(network){
@@ -17,6 +17,15 @@ io
 		console.log('-------------------------------------------');
 		console.log('-------------------------------------------');
 		console.log('stack is ready');
+		warehouse('folder city[name^=b]').ship(function(file, errors){
+			eyes.inspect(file.toJSON());
+		})
+				/*
+		warehouse('folder#folderlink').ship(function(results){
+			console.log('-------------------------------------------');
+			eyes.inspect(results.toJSON());
+		})
+
 
 		setTimeout(function(){
 			warehouse('folder city[name^=b]').ship(function(cities, errors){
@@ -28,6 +37,7 @@ io
 				
 			})	
 		}, 500);
+		*/
 		
 	})
 

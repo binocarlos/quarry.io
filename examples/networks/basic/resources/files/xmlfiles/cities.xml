@@ -40,4 +40,5 @@
 
 	<folder id="quarrylink" quarryid="2920402675297488948f71fe0892648b" routes="{'post':'/database/quarry/francecities/'}" class="france" />
 
+		<folder id="folderlink" quarryid="2929702675297488948f71fe0892648b" routes="{'post':'/filesystem/directory/test/'}" class="germany" />
 </container>
