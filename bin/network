@@ -24,6 +24,8 @@ function build_network(){
 
   folder = folder.replace(/^\.\//, process.cwd() + '/');
 
+  folder = folder.replace(/\/$/, '');
+
   utils.logevent('network: ' + folder);
 
   if(!network_modes[program.mode]){
@@ -45,7 +47,7 @@ function build_network(){
 
   network_config.type = program.mode;
 
-  network_config.folder = folder;
+  network_config.folder = folder.replace(/\/$/, '');
   network_config.super_ports = {
     http:program.http_proxy,
     rpc:program.rpc_proxy,
