@@ -25,8 +25,8 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 22, 2222
 
   # triggers a shared folder so that this SVN repo (../ from here) is shared to /srv/camelot on the Linux box
-  config.vm.share_folder "quarryio", "/srv/quarryio", '../', :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
-  config.vm.share_folder "node_modules", "/srv/node_modules", '../../', :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
+  config.vm.share_folder "quarryio", "/srv/quarryio", '../', :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/), nfs_version => 4
+  config.vm.share_folder "node_modules", "/srv/node_modules", '../../', :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/), nfs_version => 4
   config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/quarryio", "1"]
   config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/node_modules", "1"]
   
