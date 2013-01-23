@@ -1,0 +1,24 @@
+{
+	"title":"First Test Website",
+	"document_root":"www",
+	"scripts":"scripts",
+	"cookie_secret":"rodneybatman",
+	"public":{
+		"quarry":"/quarry",
+		"api":"/apiv1"
+	},
+	"hostnames":[
+		"dev.jquarry.com",
+		"*.dev.jquarry.com",
+		"localhost",
+		"localhost:8080"
+	],
+	"mixins":[
+		{
+			"name":"session",
+			"config":{
+				"driver":"redis"
+			}
+		}
+	]
+}
