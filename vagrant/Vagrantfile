@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
   config.vm.box = "quarryio_ubuntu_vagrant"
   
   # Ubuntu 12.04.1 LTS x86_64 (Guest Additions 4.1.18)
-  config.vm.box_url = "http://dl.dropbox.com/u/1537815/precise64.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   # you can turn this on to trust that it is just virtual box underneath
   #config.vm.boot_mode = :gui
