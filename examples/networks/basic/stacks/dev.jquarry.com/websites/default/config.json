@@ -37,6 +37,8 @@
 			"name":"auth",
 			"config":{
 				"route":"/auth",
+				"success_route":"/",
+				"failure_route":"/login",
 				"hostname":"dev.jquarry.com",
 				"providers":{
 					"facebook":{
