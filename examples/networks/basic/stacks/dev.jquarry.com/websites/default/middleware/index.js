@@ -23,26 +23,27 @@
 
 var _ = require('underscore');
 var async = require('async');
-var utils = require('../../../utils');
 var eyes = require('eyes');
-var express = require('express');
-var RedisStore = require('./redisstore')(express);
 
 /*
+  Quarry.io - Auth
+  ----------------
 
-  Session website mixin
   
-*/
-module.exports = function(app, config, callback){
-  var options = app.get('options');
-  var cookieParser = express.cookieParser(options.cookie_secret);
-  var sessionStore = new RedisStore();
 
-  app.use(cookieParser);
-  app.use(express.session({ 
-    store: sessionStore,
-    secret: options.cookie_secret
-  }))
 
-  callback();
+ */
+
+module.exports = function(website_options){
+
+  return function(app){
+
+  	app.get('/test', function(req, res, next){
+  		console.log('-------------------------------------------');
+  		eyes.inspect(req.user);
+  		res.json('hello')
+  	})
+
+  }
+
 }

@@ -2,6 +2,7 @@
 	"title":"First Test Website",
 	"document_root":"www",
 	"scripts":"scripts",
+	"middleware":"middleware",
 	"cookie_secret":"rodneybatman",
 	"hostnames":[
 		"dev.jquarry.com",
@@ -15,24 +16,6 @@
 		"api":"/apiv1"
 	},
 	"mixins":[
-		{
-			"name":"session",
-			"config":{
-				"driver":"redis"
-			}
-		},
-		{
-			"name":"api",
-			"config":{
-				"route":"/apiv1"
-			}
-		},
-		{
-			"name":"browser",
-			"config":{
-				"route":"/quarry"
-			}
-		},
 		{
 			"name":"auth",
 			"config":{
@@ -52,6 +35,18 @@
 						"secret":"5z4E48dOVUWv6IuuWwOdsdyew9yuD2XLNsTZG1UcYw"
 					}
 				}
+			}
+		},
+		{
+			"name":"api",
+			"config":{
+				"route":"/apiv1"
+			}
+		},
+		{
+			"name":"browser",
+			"config":{
+				"route":"/quarry"
 			}
 		}
 	]
