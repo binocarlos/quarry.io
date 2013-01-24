@@ -44,3 +44,7 @@ Now you are ready to go.
 	vagrant halt
 
 	vagrant destroy
+
+
+#Installing on a Mac
+

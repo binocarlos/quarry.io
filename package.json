@@ -38,7 +38,10 @@
     "commander": "~1.1.1",
     "colors": "~0.6.0-1",
     "http-proxy": "~0.8.7",
-    "bouncy": "~2.0.3"
+    "bouncy": "~2.0.3",
+    "passport": "~0.1.15",
+    "passport-twitter": "~0.1.4",
+    "passport-facebook": "~0.1.4"
   },
   "devDependencies": {
     "mocha": "*",
