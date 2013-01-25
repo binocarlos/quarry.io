@@ -10,6 +10,8 @@ module.exports = function(){
 	 */
 	return function(req, res, next){
 
+		console.log('-------------------------------------------');
+		eyes.inspect(req.path());
 		if(req.path()=='/'){
 			// redirect to the default database path
 			console.log('-------------------------------------------');
@@ -18,6 +20,7 @@ module.exports = function(){
 			req.redirect('/ram/file/xml/cities');	
 		}
 		else{
+
 			next();
 		}
 		

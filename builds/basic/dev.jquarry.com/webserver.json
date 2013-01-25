@@ -7,6 +7,7 @@
     },
     "websites": {
         "default": {
+            "id": "dev.jquarry.com",
             "title": "First Test Website",
             "document_root": "www",
             "scripts": "scripts",
@@ -52,9 +53,10 @@
                     }
                 },
                 {
-                    "name": "browser",
+                    "name": "warehouse",
                     "config": {
-                        "route": "/quarry"
+                        "rpcroute": "/",
+                        "httproute": "/quarry.io"
                     }
                 }
             ],

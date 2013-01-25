@@ -43,7 +43,9 @@
     "passport": "~0.1.15",
     "passport-twitter": "~0.1.4",
     "passport-facebook": "~0.1.4",
-    "redback": "~0.3.2"
+    "redback": "~0.3.2",
+    "session.socket.io": "~0.1.4",
+    "socket.io": "~0.9.13"
   },
   "devDependencies": {
     "mocha": "*",
