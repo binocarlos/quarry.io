@@ -1,25 +1,17 @@
 var io = require('../');
 var eyes = require('eyes');
 
-var generateImage = function(className){
-  return io.new('image').addClass(className);
-}
+var container = io.new('product', {
+	price:100,
+	address:{
+		postcode:'apples'
+	}
+}).addClass('test')
 
-var generateGallery = function(className){
-  return io.new('gallery').addClass(className);
-}
+var xml = io.container('<product price="100" />')
 
-var redGallery = generateGallery('red');
-var blueGallery = generateGallery('blue');
+eyes.inspect(container.models);
+eyes.inspect(xml.models);
 
-var img = generateImage('picasso').attr('size', 120);
-
-redGallery.append(img);
-
-var base = io.new('folder');
-
-base.append([redGallery, blueGallery]);
-
-//base.find('image.picasso', '.red').attr('size').should.equal(120);
-
-eyes.inspect(base.descendents().toJSON());
+console.log('-------------------------------------------');
+eyes.inspect(container.attr('address.postcode'));

@@ -1,14 +1,13 @@
 var io = require('../');
 var eyes = require('eyes');
-var server = io.warehouse();
 
-server.post('/test', function(req, res, next){
-	res.send('hello world');
+var supplier = io.supplier.quarrydb({
+	'collection':'testing123'
 })
 
 var req = io.network.request({
-	method:'post',
-	url:'/test'
+	method:'get',
+	url:'/?q=fruit.onsale'
 })
 
 var res = io.network.response();
@@ -19,6 +18,6 @@ res.on('send', function(){
 	eyes.inspect(res.toJSON());
 })
 
-server(req, res, function(){
+supplier(req, res, function(){
 	res.send('not found');
 })
