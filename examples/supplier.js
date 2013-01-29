@@ -10,6 +10,13 @@ var child = io.new('product', {
 	price:100
 })
 
+var grandchild = io.new('caption', {
+	name:'testing123'
+})
+
+child.models[0].children || (child.models[0].children = []);
+child.models[0].children.push(grandchild.toJSON()[0]);
+
 async.series([
 	function(next){
 		var req = io.network.request({
@@ -20,10 +27,12 @@ async.series([
 		var res = io.network.response();
 
 		res.on('send', function(){
-			console.log('-------------------------------------------');
+			
+			child.models = res.body;
+
 			console.log('-------------------------------------------');
 			console.log('after POST');
-			eyes.inspect(res.toJSON());
+			eyes.inspect(child.toJSON());
 			next();
 		})
 
@@ -44,6 +53,53 @@ async.series([
 			console.log('-------------------------------------------');
 			console.log('-------------------------------------------');
 			console.log('after GET');
+			eyes.inspect(res.toJSON());
+			next();
+		})
+
+		supplier(req, res, function(){
+			res.send('not found');
+		})
+	},
+
+	function(next){
+
+		child.attr('test', 10);
+
+		var req = io.network.request({
+			method:'put',
+			url:'/' + child.quarryid(),
+			body:child.toJSON()[0]
+		})
+
+		var res = io.network.response();
+
+		res.on('send', function(){
+			console.log('-------------------------------------------');
+			console.log('-------------------------------------------');
+			console.log('after PUT');
+			eyes.inspect(res.toJSON());
+			next();
+		})
+
+		supplier(req, res, function(){
+			res.send('not found');
+		})
+	},
+
+	function(next){
+
+		var req = io.network.request({
+			method:'delete',
+			url:'/' + child.quarryid()
+		})
+
+		var res = io.network.response();
+
+		res.on('send', function(){
+			console.log('-------------------------------------------');
+			console.log('-------------------------------------------');
+			console.log('after DELETE');
 			eyes.inspect(res.toJSON());
 			next();
 		})
