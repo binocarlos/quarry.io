@@ -5,9 +5,13 @@ var supplier = io.supplier.quarrydb({
 	'collection':'testing123'
 })
 
+var child = io.new('product', {
+	price:100
+})
+
 var req = io.network.request({
-	method:'get',
-	url:'/?q=fruit.onsale'
+	method:'post',
+	body:child.toJSON()
 })
 
 var res = io.network.response();

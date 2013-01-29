@@ -7,6 +7,7 @@ module.exports = {
 	reception:require('./lib/reception'),
 	network:require('./lib/network'),
 	supplier:{
-		container:require('./lib/supplier/container')
+		container:require('./lib/supplier/container'),
+		quarrydb:require('./lib/supplier/quarrydb')
 	}
 }
