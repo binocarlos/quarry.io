@@ -16,6 +16,7 @@ var child = io.new(childdata);
 
 container.append(child);
 
+
 /*
 
 	make the stack from container data
@@ -82,6 +83,6 @@ var stackdata = {
 	}
 }
 
-var teststack = io.stack(stackdata);
+var stack = io.stack(stackdata);
 
-console.log(JSON.stringify(teststack.toJSON(), null, 4));
+eyes.inspect(stack.find('api').toJSON());
