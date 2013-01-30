@@ -19,12 +19,12 @@ child.models[0].children.push(grandchild.toJSON()[0]);
 
 async.series([
 	function(next){
-		var req = io.network.request({
+		var req = io.contract.request({
 			method:'post',
 			body:child.toJSON()
 		})
 
-		var res = io.network.response();
+		var res = io.contract.response();
 
 		res.on('send', function(){
 			
@@ -42,12 +42,12 @@ async.series([
 	},
 
 	function(next){
-		var req = io.network.request({
+		var req = io.contract.request({
 			method:'get',
 			url:'/?q=product'
 		})
 
-		var res = io.network.response();
+		var res = io.contract.response();
 
 		res.on('send', function(){
 			console.log('-------------------------------------------');
@@ -66,13 +66,13 @@ async.series([
 
 		child.attr('test', 10);
 
-		var req = io.network.request({
+		var req = io.contract.request({
 			method:'put',
 			url:'/' + child.quarryid(),
 			body:child.toJSON()[0]
 		})
 
-		var res = io.network.response();
+		var res = io.contract.response();
 
 		res.on('send', function(){
 			console.log('-------------------------------------------');
@@ -89,12 +89,12 @@ async.series([
 
 	function(next){
 
-		var req = io.network.request({
+		var req = io.contract.request({
 			method:'delete',
 			url:'/' + child.quarryid()
 		})
 
-		var res = io.network.response();
+		var res = io.contract.response();
 
 		res.on('send', function(){
 			console.log('-------------------------------------------');

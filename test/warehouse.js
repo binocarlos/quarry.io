@@ -1,9 +1,21 @@
 var io = require('../');
 var async = require('async');
 
+function nerflog(callback){
+	var oldlog = console.log;
+	console.log = function(){}
+	return function(){
+		console.log = oldlog;
+		callback();
+	}
+}
+
 describe('warehouse', function(){
 
   it('should route basic requests', function(done) {
+  	
+  	done = nerflog(done);
+
   	var server = io.warehouse();
 
 		server.post('/test', function(req, res, next){
@@ -11,9 +23,9 @@ describe('warehouse', function(){
 		})
 
 		function run_req(req, callback){
-			var req = io.network.request(req);
+			var req = io.contract.request(req);
 
-			var res = io.network.response();
+			var res = io.contract.response();
 
 			res.on('send', function(){
 				callback(null, res);
