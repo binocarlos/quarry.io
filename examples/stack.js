@@ -85,4 +85,4 @@ var stackdata = {
 
 var stack = io.stack(stackdata);
 
-eyes.inspect(stack.find('api').toJSON());
+eyes.inspect(stack.root.find('api').toJSON());
