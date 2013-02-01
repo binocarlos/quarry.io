@@ -5,20 +5,6 @@ var utils = require('../lib/utils');
 
 /*
 
-	make some test data
-	
-*/
-var data = '<product price="100"><caption name="testing123"/></product>';
-var childdata = '<food name="othertest"/>';
-
-var container = io.new(data);
-var child = io.new(childdata);
-
-container.append(child);
-
-
-/*
-
 	make the stack from container data
 	
 */
@@ -31,20 +17,10 @@ var stackdata = {
 		
 	*/
 	attr:{
-		name:"My First Test Stack"	
+		name:"My First Test Stack",
+		comment:"A stack to test things out innit"
 	},
-	/*
 	
-		database is a single container representing
-		a supplier
-		
-	*/
-	database:{
-		"module":"io.supplier.quarrydb",
-		"config":{
-			"collection":"system"
-		}
-	},
 	/*
 	
 		API contains all of the endpoints within the stack
@@ -85,4 +61,4 @@ var stackdata = {
 
 var stack = io.stack(stackdata);
 
-eyes.inspect(stack.root.find('api').toJSON());
+eyes.inspect(stack.root.toJSON());

@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander');
+var version = require('../package.json').version;
+
+var fs = require('fs');
+
+var eyes = require('eyes');
+var dye = require('dye');
+
+var io = require('../');
+
+var log = require('logule').init(module, 'quarry.io bootloader');
+
+log.info("quarry.io version " + dye.red(version));
+
+program
+  .version(version)
+
+/*
+
+  we kick off a network to host a single stack for development purposes
+
+
+  
+*/
+program
+  .command('test [path]')
+  .description('test a quarry stack')
+  .action(function(path){
+
+    if(!path){
+      path = process.cwd();
+    }
+    else if(path.indexOf('/')!=0){
+      path = process.cwd() + '/' + path;
+    }
+
+    path = path.replace(/\/$/, '');
+
+    
+
+
+    /*
+    
+      create a development network
+      
+    */
+
+    log.info('Booting network in development mode');
+
+    io.network()
+      .deployment(io.deployment('development'))
+      .slurp(path)
+      .boot(function(){
+        log.info('network booted');
+      })
+    
+  })
+
+program
+  .command('*')
+  .action(function(command){
+    console.log('command: "%s" not found', command);
+  })
+
+program.parse(process.argv);

@@ -31,7 +31,7 @@ module.exports = {
 	warehouse:require('./lib/warehouse'),
 	reception:require('./lib/reception'),
 	network:require('./lib/network'),
-  stack:require('./lib/stack'),
+  deployment:require('./lib/deployment'),
 	supplier:require('./lib/supplier'),
 	middleware:require('./lib/supplier').middleware
 }

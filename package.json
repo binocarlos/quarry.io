@@ -6,6 +6,9 @@
   "scripts": {
     "test": "make test"
   },
+  "bin": {
+    "quarry": "./bin/quarry"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/binocarlos/quarry.io"
@@ -22,7 +25,17 @@
     "eyes": "~0.1.8",
     "mongodb": "~1.2.10",
     "node-uuid": "~1.4.0",
-    "bigint": "~0.3.9"
+    "bigint": "~0.3.9",
+    "xtend": "~1.0.3",
+    "logule": "~2.0.0",
+    "commander": "~1.1.1",
+    "dye": "~0.2.0",
+    "jsonlint": "~1.5.1",
+    "zeromq-port": "0.0.1",
+    "redback": "~0.3.2",
+    "zmq": "~2.2.0",
+    "wrench": "~1.4.4",
+    "msgpack": "~0.1.7"
   },
   "devDependencies": {
     "mocha": "*",
