@@ -35,7 +35,8 @@
     "redback": "~0.3.2",
     "zmq": "~2.2.0",
     "wrench": "~1.4.4",
-    "msgpack": "~0.1.7"
+    "msgpack": "~0.1.7",
+    "deep-diff": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
