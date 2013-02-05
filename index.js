@@ -28,13 +28,28 @@ bootstrap();
 */
 
 module.exports = {
+
+  /*
+  
+    constants
+    
+  */
+  DEVELOPMENT:'development',
+  LOCAL:'local',
+  CLOUD:'cloud',
+
+  /*
+  
+    modules
+    
+  */
 	container:require('./lib/container').factory,
 	new:require('./lib/container').factory,
 	contract:require('./lib/contract'),
 	warehouse:require('./lib/warehouse'),
 	reception:require('./lib/reception'),
 	network:require('./lib/network'),
-  deployment:require('./lib/deployment'),
+  infrastructure:require('./lib/infrastructure'),
 	supplier:require('./lib/supplier'),
 	middleware:require('./lib/supplier').middleware
 }
