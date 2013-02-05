@@ -36,7 +36,8 @@
     "zmq": "~2.2.0",
     "wrench": "~1.4.4",
     "msgpack": "~0.1.7",
-    "deep-diff": "~0.1.0"
+    "deep-diff": "~0.1.0",
+    "console-trace": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "*",
