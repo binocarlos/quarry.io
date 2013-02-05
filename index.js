@@ -17,6 +17,10 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+var bootstrap = require('./lib/tools/bootstrap');
+
+bootstrap();
+
 /*
 
 	quarry.io main API expose

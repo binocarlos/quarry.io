@@ -33,6 +33,8 @@ program
   .description('test a quarry stack')
   .action(function(path){
 
+    process.env.NODE_ENV = 'development';
+    
     if(!path){
       path = process.cwd();
     }
