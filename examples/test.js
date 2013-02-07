@@ -1,20 +1,11 @@
-var express = require('express');
-var fs = require('fs');
-var _ = require('underscore');
+var io = require('../');
 var eyes = require('eyes');
 var async = require('async');
-var http = require('http');
+var utils = require('../lib/utils');
+var SupplyChain = require('../lib/network/supplychain');
 
-var app = express();
-var server = http.createServer(app);
-
-app.configure(function(){
-
-
-  app.use(express.static("/srv/node_modules/freddytest/www"));
-
-  
-	
+SupplyChain('system', '/database').connect(function(db){
+	db('test').ship(function(){
+		console.log('-------------------------------------------');
+	})
 })
-
-server.listen(80);	
