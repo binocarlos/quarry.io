@@ -16,11 +16,15 @@
     }
   },
   "api":{
-    "attr":{},
+    "config":{},
     "endpoints":[]
   },
   "webserver":{
-    "attr":{},
+    "config":{},
     "virtualhosts":[]
+  },
+  "reception":{
+    "config":{},
+    "middleware":[]
   }
 }
