@@ -21,10 +21,10 @@
   },
   "webserver":{
     "config":{},
-    "virtualhosts":[]
+    "stack":[]
   },
   "reception":{
     "config":{},
-    "middleware":[]
+    "stack":[]
   }
 }
