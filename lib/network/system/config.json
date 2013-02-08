@@ -1,10 +1,10 @@
 {
-  "attr":{
+  "config":{
     "name":"quarry.io Stack",
     "id":"default"
   },
   "workers":{
-    "attr":{
+    "config":{
       "heartbeat":1000,
       "monitor":{
         "delay": 5000,
@@ -15,9 +15,9 @@
       }
     }
   },
-  "api":{
+  "apiserver":{
     "config":{},
-    "endpoints":[]
+    "stack":[]
   },
   "webserver":{
     "config":{},
