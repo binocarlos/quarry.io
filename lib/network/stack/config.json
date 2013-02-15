@@ -23,6 +23,10 @@
     "config":{},
     "services":[]
   },
+  "switchboard":{
+    "config":{},
+    "services":[]
+  },
   "reception":{
     "config":{},
     "services":[]
