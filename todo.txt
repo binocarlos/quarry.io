@@ -1,3 +1,37 @@
+1. reception front - check the routing key
+decide if request goes into holdingbay or route direct
+
+2. holding bay + contract resolver + switchboard feedback loop
+for branching
+
+3. script + map + reduce + html servers
+
+4. supplier portals + portal server
+
+5. HTTP suppliers
+
+6. Authentication Server
+
+7. Supplier authorization based on auth selector
+(supplier level + container level)
+
+8. operational transformation portals
+
+9. Cool Suppliers
+
+10. GUI
+
+---------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 Todo
 
 YAML Config

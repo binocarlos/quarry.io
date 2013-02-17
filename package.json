@@ -44,7 +44,10 @@
     "socket.io": "~0.9.13",
     "bouncy": "~2.0.3",
     "threads_a_gogo": "~0.1.5",
-    "passport": "~0.1.15"
+    "passport": "~0.1.15",
+    "redis": "~0.8.2",
+    "passport-facebook": "~0.1.5",
+    "passport-twitter": "~0.1.4"
   },
   "devDependencies": {
     "mocha": "*",
