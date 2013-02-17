@@ -42,7 +42,9 @@
     "os-monitor": "0.0.10",
     "express": "~3.1.0",
     "socket.io": "~0.9.13",
-    "bouncy": "~2.0.3"
+    "bouncy": "~2.0.3",
+    "threads_a_gogo": "~0.1.5",
+    "passport": "~0.1.15"
   },
   "devDependencies": {
     "mocha": "*",
