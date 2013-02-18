@@ -47,7 +47,8 @@
     "passport": "~0.1.15",
     "redis": "~0.8.2",
     "passport-facebook": "~0.1.5",
-    "passport-twitter": "~0.1.4"
+    "passport-twitter": "~0.1.4",
+    "session.socket.io": "~0.1.6"
   },
   "devDependencies": {
     "mocha": "*",
