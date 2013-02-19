@@ -42,13 +42,17 @@
     "os-monitor": "0.0.10",
     "express": "~3.1.0",
     "socket.io": "~0.9.13",
-    "bouncy": "~2.0.3",
     "threads_a_gogo": "~0.1.5",
     "passport": "~0.1.15",
     "redis": "~0.8.2",
     "passport-facebook": "~0.1.5",
     "passport-twitter": "~0.1.4",
-    "session.socket.io": "~0.1.6"
+    "session.socket.io": "~0.1.6",
+    "consolidate": "~0.8.0",
+    "ejs": "~0.8.3",
+    "http-proxy": "~0.8.7",
+    "browserify": "~1.18.0",
+    "node-minify": "~0.7.2"
   },
   "devDependencies": {
     "mocha": "*",
