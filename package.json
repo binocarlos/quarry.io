@@ -52,7 +52,10 @@
     "ejs": "~0.8.3",
     "http-proxy": "~0.8.7",
     "browserify": "~1.18.0",
-    "node-minify": "~0.7.2"
+    "node-minify": "~0.7.2",
+    "buffet": "~0.5.0",
+    "connect-powered-by": "~0.1.0",
+    "passport.socketio": "~1.0.1"
   },
   "devDependencies": {
     "mocha": "*",
