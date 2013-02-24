@@ -56,7 +56,8 @@
     "buffet": "~0.5.0",
     "connect-powered-by": "~0.1.0",
     "passport.socketio": "~1.0.1",
-    "mime": "~1.2.9"
+    "mime": "~1.2.9",
+    "request": "~2.14.0"
   },
   "devDependencies": {
     "mocha": "*",
