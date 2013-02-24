@@ -1,0 +1,7 @@
+ubuntu_rackspace:
+  provider: rackspace
+  image: Ubuntu 12.04 LTS
+  size: 512 server
+  script: Ubuntu
+  minion:
+      cheese: edam

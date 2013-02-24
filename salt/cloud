@@ -1,0 +1,4 @@
+minion:
+  master: master.jquarry.com
+RACKSPACE.user: binocarlos
+RACKSPACE.apikey: 812ca6825ddb4deaba858f76a77f5af2

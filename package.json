@@ -55,7 +55,8 @@
     "node-minify": "~0.7.2",
     "buffet": "~0.5.0",
     "connect-powered-by": "~0.1.0",
-    "passport.socketio": "~1.0.1"
+    "passport.socketio": "~1.0.1",
+    "mime": "~1.2.9"
   },
   "devDependencies": {
     "mocha": "*",
