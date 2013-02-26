@@ -58,7 +58,8 @@
     "passport.socketio": "~1.0.1",
     "mime": "~1.2.9",
     "request": "~2.14.0",
-    "JASON": "~0.1.3"
+    "JASON": "~0.1.3",
+    "watch": "~0.5.1"
   },
   "devDependencies": {
     "mocha": "*",
