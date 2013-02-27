@@ -1,9 +1,0 @@
-core npm libs
-
-async
-
-connect
-
-dnode
-
-mongoose

@@ -1,5 +1,0 @@
-{
-	"type":"provider",
-	"driver":"filesystem.directory",
-	"directory":"/localdirs"
-}
