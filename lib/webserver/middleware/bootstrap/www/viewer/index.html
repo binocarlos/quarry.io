@@ -1,0 +1,11 @@
+{{node.title()}}
+<hr />
+<div class="container">
+
+  <div ng-repeat="node in node.children().containers()">
+  	<div class="viewer-elem">
+  		{{node.title()}}
+  	</div>
+  </div>
+
+</div>

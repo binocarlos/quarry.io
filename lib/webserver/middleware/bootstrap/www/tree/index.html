@@ -1,0 +1,4 @@
+{{node.title()}}
+<ul>
+    <li ng-repeat="node in node.children().containers()" ng-include="'tree/index.html'"></li>
+</ul>
