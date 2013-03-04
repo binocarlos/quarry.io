@@ -1,0 +1,51 @@
+{
+  "config":{
+    "name":"quarry.io System Stack"
+  },
+  "departments":{
+    "file":[{
+      "name":"Icons",
+      "mount":"/icons",
+      "module":"quarry.directory",
+      "location":"<%- quarry.codefolder %>/../../icons"
+    }],
+    "warehouse":[{
+      "name":"Infrastructure Database",
+      "mount":"/infrastructure",
+      "module":"quarry.quarrydb",
+      "collection":"quarry.infrastructure",
+      "reset":true
+    },{
+      "name":"Stack Databases",
+      "mount":"/stack",
+      "module":"quarry.provider",
+      "fill_id_field":"collection",
+      "fill_id_field_prepend":"quarry.stack.",
+      "supplier":{
+        "module":"quarry.stackdb",
+        "reset":true
+      }
+    }],
+    "web":[{
+      "name":"HQ Quarry",
+      "type":"website",
+      "document_root":"<%- stack.codefolder %>/websites/hq/www",
+      "script_root":"<%- stack.codefolder %>/websites/hq/scripts",
+      "hostnames":[
+        "dev.quarry.io"
+      ],
+      "connections":{
+        "file:/":"/",
+        "warehouse:/":"/db/project"
+      },
+      "middleware":[{
+        "name":"Chunker",
+        "module":"quarry.chunker",
+        "extensions":{
+          "htm":true,
+          "html":true
+        }
+      }]
+    }]
+  }
+}

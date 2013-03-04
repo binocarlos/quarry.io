@@ -1,4 +1,14 @@
 minion:
   master: master.jquarry.com
+
+sync_after_install: all  
+delete_sshkeys: True
+display_ssh_output: True
+OPENSTACK.identity_url: 'https://identity.api.rackspacecloud.com/v2.0/tokens'
+OPENSTACK.compute_name: cloudServersOpenStack
+OPENSTACK.protocol: ipv4
+OPENSTACK.compute_region: DFW
+OPENSTACK.protocol: ipv4
 RACKSPACE.user: binocarlos
+OPENSTACK.tenant: 698250
 RACKSPACE.apikey: 812ca6825ddb4deaba858f76a77f5af2

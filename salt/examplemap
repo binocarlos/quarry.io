@@ -1,0 +1,4 @@
+openstack_small:
+    - worker1
+openstack_medium:
+openstack_big:

@@ -1,7 +1,14 @@
-ubuntu_rackspace:
-  provider: rackspace
-  image: Ubuntu 12.04 LTS
-  size: 512 server
-  script: Ubuntu
-  minion:
-      cheese: edam
+openstack_small:
+  provider: openstack
+  size: 512MB
+  image: Ubuntu 12.04 LTS (Precise Pangolin)
+
+openstack_medium:
+  provider: openstack
+  size: 1GB
+  image: Ubuntu 12.04 LTS (Precise Pangolin)
+
+openstack_big:
+  provider: openstack
+  size: 2GB
+  image: Ubuntu 12.04 LTS (Precise Pangolin)

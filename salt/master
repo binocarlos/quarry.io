@@ -1,0 +1,7 @@
+minion:
+  master: master.jquarry.com
+
+startup_states: sls
+
+sls_list:
+  - quarry
