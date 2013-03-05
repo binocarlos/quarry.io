@@ -58,6 +58,7 @@ program
       .slurp(path)
       .boot(function(){
         log.info('network booted');
+        
       })
     
   })
