@@ -54,7 +54,7 @@ program
     log.info('Booting network in development mode');
 
     var network = io.network()
-      .test(path, function(error){
+      .teststack(path, function(error){
         if(error){
           log.error(error);
         }
