@@ -53,12 +53,14 @@ program
 
     log.info('Booting network in development mode');
 
-    io.network()
-      .flavour(io.DEVELOPMENT)
-      .slurp(path)
-      .boot(function(){
-        log.info('network booted');
-        
+    var network = io.network()
+      .test(path, function(error){
+        if(error){
+          log.error(error);
+        }
+        else{
+          log.info('stack booted: testing stack -> ' + path);
+        }
       })
     
   })
