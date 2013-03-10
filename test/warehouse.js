@@ -1,64 +1,47 @@
-var io = require('../');
-var async = require('async');
+/*
 
-function nerflog(callback){
-	var oldlog = console.log;
-	console.log = function(){}
-	return function(){
-		console.log = oldlog;
-		callback();
-	}
-}
+   this stops our custom logger wrapper
+  
+*/
+process.env.TEST_MODE = true;
+process.env.NODE_ENV = 'test';
+
+var io = require('../');
+var eyes = require('eyes');
+var data = require('./fixtures/data');
 
 describe('warehouse', function(){
 
-  it('should route basic requests', function(done) {
+  it('should route requests', function(done) {
+
+    var warehouse = io.warehouse();
   	
-  	done = nerflog(done);
+    warehouse.get('/apples', function(req, res, next){
+      req.setHeader('fruit', 'apples');
+      next();
+    })
 
-  	var server = io.warehouse();
+    warehouse.get('/apples', function(req, res, next){
+      req.getHeader('fruit').should.equal('apples');
+      res.send('ok');
+    })
 
-		server.post('/test', function(req, res, next){
-			res.send('hello world');
-		})
+    var req = io.request({
+      method:'get',
+      url:'/apples'
+    })
 
-		function run_req(req, callback){
-			var req = io.contract.request(req);
+    var res = io.response(function(){
+      res.body.should.equal('ok');
+      done();
+    })
 
-			var res = io.contract.response();
-
-			res.on('send', function(){
-				callback(null, res);
-			})
-
-			server(req, res, function(){
-				res.send('not found');
-			})
-		}
-
-		async.series([
-			function(next){
-				run_req({
-					method:'get',
-					url:'/test'
-				}, function(error, res){
-					res.body.should.equal('not found');
-					next();
-				})
-			},
-
-			function(next){
-				run_req({
-					method:'post',
-					url:'/test'
-				}, function(error, res){
-					res.body.should.equal('hello world');
-					next();
-				})
-			}
-		], done)
-
+    warehouse(req, res, function(){
+      res.send404();
+    })
   })
+
+  
 
   
 

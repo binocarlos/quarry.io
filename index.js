@@ -46,6 +46,8 @@ module.exports = {
 	container:require('./lib/container').factory,
 	new:require('./lib/container').factory,
 	contract:require('./lib/contract'),
+  request:require('./lib/contract').request,
+  response:require('./lib/contract').response,
 	warehouse:require('./lib/warehouse'),
 	network:require('./lib/network'),
 	supplier:require('./lib/supplier'),
