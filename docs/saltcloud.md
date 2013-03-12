@@ -1,1 +1,0 @@
-http://salt-cloud.readthedocs.org/en/latest/topics/config.html
