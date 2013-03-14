@@ -23,10 +23,13 @@ program
 
 /*
 
-  we kick off a network to host a single stack for development purposes
+  boot up a stack in minimal dev trim that takes the least amount of time to start
 
+  there is no HQ server just a manual static network that runs a single stack 
 
-  
+  it uses IPC sockets and is fully compatable but the reception and switchboard setups
+  are not mesh they are standalone
+
 */
 program
   .command('test [path]')
@@ -44,14 +47,13 @@ program
 
     path = path.replace(/\/$/, '');
 
-    process.env.NODE_ENV = 'development';
     /*
     
       create a development network
       
     */
 
-    log.info('Booting network in development mode');
+    log.info('Booting stack in test mode');
 
     var network = io.network()
       .teststack(path, function(error){
