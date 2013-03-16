@@ -7,3 +7,7 @@ http://support.hyperic.com/display/SIGAR/Home
 https://github.com/wdavidw/node-sigar
 
 https://github.com/NaturalNode/natural
+
+http://usablica.github.com/intro.js/
+
+https://github.com/marak/Faker.js/
