@@ -64,7 +64,9 @@
     "cheerio": "~0.10.7",
     "imagemagick": "~0.1.3",
     "send": "~0.1.0",
-    "connect-slashes": "0.0.10"
+    "connect-slashes": "0.0.10",
+    "passport-dropbox": "~0.1.2",
+    "passport-google-oauth": "~0.1.5"
   },
   "devDependencies": {
     "mocha": "*",
