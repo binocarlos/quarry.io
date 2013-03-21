@@ -21,6 +21,11 @@
 	font-size: 0.8em;
 }
 
+.quarry-auth .project-button {
+	margin-right:10px;
+}
+
+
 /*
 
 	TREE
@@ -57,10 +62,18 @@
 	
 */
 .quarry-viewer .container {
+	cursor:pointer;
 	width:100px;
 	height:100px;
 	float:left;
 	text-align:center;
+	padding:5px;
+	margin:1px;
+}
+.quarry-viewer .container.selected{
+	background-color:#e5e5ff;
+	border:1px dotted #6666ff;
+	margin:0px;
 }
 
 .quarry-viewer .img {
