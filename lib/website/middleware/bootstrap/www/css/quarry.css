@@ -46,8 +46,16 @@
 	margin-right:5px;
 }
 
+.quarry-tree .treetitle{
+	cursor: pointer;
+}
+
 .quarry-tree .title{
 	padding-bottom:5px;
+}
+
+.quarry-tree .treeactive{
+	background-color:#e5e5ff;
 }
 
 .quarry-tree .treetoggle{
@@ -55,6 +63,7 @@
 	height:16px;
 	text-align:center;
 	float:left;
+	cursor: pointer;
 }
 
 /*
