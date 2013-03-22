@@ -47,15 +47,15 @@
 }
 
 .quarry-tree .treetitle{
+	margin-bottom:3px;
+	padding:2px;
 	cursor: pointer;
 }
 
-.quarry-tree .title{
-	padding-bottom:5px;
-}
-
 .quarry-tree .treeactive{
-	background-color:#e5e5ff;
+	padding:1px;
+	border:1px dashed #ccccff;
+	background-color:#f5f5ff;
 }
 
 .quarry-tree .treetoggle{
@@ -81,12 +81,23 @@
 	margin:1px;
 }
 .quarry-viewer .container.selected{
-	background-color:#e5e5ff;
-	border:1px dotted #6666ff;
 	margin:0px;
+	border:1px dashed #ccccff;
+	background-color:#f5f5ff;
 }
 
 .quarry-viewer .img {
 	width:64px;
 	height:64px;
+}
+
+/*
+
+	NAVBAR
+	
+*/
+
+.input-append .btn {
+    float: none!important;
+    margin-left: 0!important;
 }
