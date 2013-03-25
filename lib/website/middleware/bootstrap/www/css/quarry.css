@@ -72,7 +72,7 @@
 	
 */
 .quarry-viewer{
-	
+	padding-bottom:200px;
 }
 .quarry-viewer .container {
 	cursor:pointer;
@@ -98,10 +98,6 @@
 	margin-top:0px;
 }
 
-
-.children-view{
-	padding-bottom:150px;
-}
 /*
 
 	NAVBAR
@@ -213,4 +209,10 @@
 
 .nav-tabs a{
 	font-size:0.85em;
+}
+
+
+.newfieldgroup{
+	margin-top:20px;
+	margin-bottom:20px;
 }
