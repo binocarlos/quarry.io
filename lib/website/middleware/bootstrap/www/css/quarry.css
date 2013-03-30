@@ -98,6 +98,17 @@
 	margin-top:0px;
 }
 
+
+.quarry-viewer .iconcontainerbox {
+	cursor:pointer;
+	width:40px;
+	height:40px;
+	float:left;
+	text-align:center;
+	padding:5px;
+	margin:1px;
+}
+
 /*
 
 	NAVBAR

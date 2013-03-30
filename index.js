@@ -51,5 +51,7 @@ module.exports = {
 	warehouse:require('./lib/warehouse'),
 	network:require('./lib/network'),
 	supplier:require('./lib/supplier'),
-	middleware:require('./lib/supplier').middleware
+	middleware:require('./lib/supplier').middleware,
+  device:require('./lib/network/device'),
+  endpoints:require('./lib/network/tools/endpointfactory')
 }

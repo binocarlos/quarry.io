@@ -8,15 +8,13 @@ var program = require('commander');
 var version = require('../package.json').version;
 
 var fs = require('fs');
-
+var _ = require('lodash');
 var eyes = require('eyes');
 var dye = require('dye');
 
 var io = require('../');
 
-var log = require('logule').init(module, 'quarry.io bootloader');
-
-log.info("quarry.io version " + dye.red(version));
+console.log("quarry.io version " + dye.red(version));
 
 program
   .version(version)
@@ -32,7 +30,7 @@ program
 
 */
 program
-  .command('test [path]')
+  .command('build [path]')
   .description('test a quarry stack')
   .action(function(path){
 
@@ -53,18 +51,100 @@ program
       
     */
 
-    log.info('Booting stack in test mode');
+
+    console.log('Building stack: ' + dye.cyan(path));
 
     var network = io.network()
-      .teststack(path, function(error){
+      .build(path, function(error, buildid){
         if(error){
-          log.error(error);
+          console.log(dye.red(error));
         }
         else{
-          log.info('stack booted: testing stack -> ' + path);
+          console.log('stack built: ' + dye.yellow(buildid));
         }
       })
     
+  })
+
+program
+  .command('list')
+  .description('show the currently built stacks')
+  .action(function(){
+    console.log('');
+    console.log('-------------------------------------------');
+    console.log('Current quarry builds');
+
+    var network = io.network()
+      .list(function(error, list){
+        if(error){
+          console.log(dye.red(error));
+        }
+        else{
+          console.log('');
+          _.each(list, function(build){
+            console.log('      * ' + dye.yellow(build));
+          })
+        }
+      })
+
+  })
+
+program
+  .command('cleanup')
+  .description('remove all current builds')
+  .action(function(){
+    console.log('');
+    console.log('-------------------------------------------');
+    console.log('Deleting quarry builds');
+
+    var network = io.network()
+      .cleanup(function(error, list){
+        if(error){
+          console.log(dye.red(error));
+        }
+        else{
+          console.log('');
+          _.each(list, function(build){
+            console.log('      * ' + dye.red(build) + ' deleted');
+          })
+        }
+      })
+
+  })
+
+program
+  .command('start')
+  .description('run a quarry stack')
+  .action(function(buildid){
+    console.log('');
+    console.log('-------------------------------------------');
+    console.log('Running Quarry Stack:');
+    console.log('');
+    console.log(dye.yellow(buildid));
+
+    var network = io.network()
+      .run(buildid, function(error){
+        if(error){
+          console.log(dye.red(error));
+        }
+        else{
+          console.log(dye.green('Quarry Running...'));
+        }
+      })
+  })
+
+program
+  .command('job')
+  .description('run a quarry job')
+  .action(function(path){
+    console.log('');
+    console.log('-------------------------------------------');
+    console.log('Running Quarry Job:');
+    console.log('');
+    console.log(dye.cyan(path));
+
+    
+
   })
 
 program
